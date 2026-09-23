@@ -1,0 +1,10 @@
+# Set javac settings from JDT prefs
+
+Bundle-Vendor		= Orange
+Bundle-Activator	= org.osgi.impl.service.enocean.EnOceanBundleActivator
+Bundle-Description	= The EnOcean reference implementation bundle.
+
+-privatepackage		= \
+	${p}.*
+
+p: org.osgi.impl.service.enocean
