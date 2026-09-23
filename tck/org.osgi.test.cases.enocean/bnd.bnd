@@ -1,5 +1,4 @@
 # Set javac settings from JDT prefs
--include: ${includes}/jdt.bnd, ${includes}/osgi.tck.junit-platform.bnd, ${includes}/tck.bnd, ${includes}/cmpn.bnd
 
 Bundle-Description	= EnOcean Test Bundle
 
@@ -17,29 +16,16 @@ Import-Package: \
  org.osgi.service.enocean, \
  org.osgi.service.enocean.descriptions
 
--buildpath: \
-    ${osgi.annotation.buildpath},\
-    org.osgi.test.support;version=project,\
-    org.osgi.framework;maven-scope=provided;version=1.8, \
-    org.osgi.service.startlevel;maven-scope=provided;version=1.1,\
-    org.osgi.util.tracker;maven-scope=provided;version=1.5,\
-	org.osgi.service.device;version=1.1, \
-	org.osgi.service.event;version=1.3, \
-	org.osgi.service.enocean;version=latest
+p: org.osgi.test.cases.enocean
 
--runbundles: \
-	org.osgi.service.enocean;version=latest,\
-	org.osgi.impl.service.log;version=latest,\
-	org.osgi.impl.service.cm;version=latest,\
-	org.osgi.impl.service.event;version=latest,\
-	org.osgi.impl.service.enocean;version=latest
+# Maven build: workspace includes replaced inline (from cnf/includes and build.bnd in osgi/osgi)
+# -make.maven, not -make: the key is a map entry and would displace
+# a project-level -make (webcontainer also builds .war recipes this
+# way). bnd merges all -make.* entries.
+-make.maven: (*).(jar); type=bnd; recipe="bnd/$1.bnd"
 
--runproperties = ${runproperties}, \
-    comm.rxtx.disable=true, \
-	org.osgi.service.enocean.host.path=:testcase:, \
-	org.osgi.service.enocean.loglevel.debug=true, \
-	org.osgi.service.enocean.loglevel.warn=true, \
-	org.osgi.service.enocean.loglevel.info=true, \
-	org.osgi.service.enocean.loglevel.error=true, \
-	org.osgi.service.enocean.host.chip_id=12345678, \
-	org.osgi.service.enocean.host.base_id=9876543
+testcases.junit3: ${classes;EXTENDS;junit.framework.TestCase;CONCRETE}
+testcases.junit4: ${classes;HIERARCHY_ANNOTATED;org.junit.Test;CONCRETE}
+testcases.junit5: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+Test-Cases: ${sort;${uniq;${testcases.junit3};${testcases.junit4};${testcases.junit5}}}
+-plugin.signaturetest: SignatureTest
