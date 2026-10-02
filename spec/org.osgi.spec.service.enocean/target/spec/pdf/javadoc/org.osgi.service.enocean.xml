@@ -1,0 +1,1039 @@
+<section xmlns="http://docbook.org/ns/docbook"
+         xreflabel="org.osgi.service.enocean"
+         version="5"
+         role="package"
+         xml:id="org.osgi.service.enocean">
+   <title>org.osgi.service.enocean</title>
+   <info>
+      <releaseinfo xml:id="org.osgi.service.enocean-version">Version 1.0</releaseinfo>
+      <edition xml:id="org.osgi.service.enocean-version.number">1.0</edition>
+   </info>
+   <para>
+EnOcean Package Version 1.0.
+ 
+ </para>
+   <para>
+ Bundles wishing to use this package must list the package in the
+ Import-Package header of the bundle's manifest. This package has two types of
+ users: the consumers that use the API in this package and the providers that
+ implement the API in this package.
+ 
+ </para>
+   <para>
+ Example import for consumers using the API in this package:
+ </para>
+   <para>
+ {@code  Import-Package: org.osgi.service.enocean; version="[1.0,2.0)"}
+ </para>
+   <para>
+ Example import for providers implementing the API in this package:
+ </para>
+   <para>
+ {@code  Import-Package: org.osgi.service.enocean; version="[1.0,1.1)"}</para>
+   <section role="summary">
+      <title>Summary</title>
+      <itemizedlist>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanChannel">
+                  <code>EnOceanChannel</code>
+               </link> - 
+Holds the raw value and channel identification info of an EnOceanChannel.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanDevice">
+                  <code>EnOceanDevice</code>
+               </link> - 
+This interface represents a physical device that communicates over the
+ EnOcean protocol.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanEvent">
+                  <code>EnOceanEvent</code>
+               </link> - 
+Constants for use in EnOcean events.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanException">
+                  <code>EnOceanException</code>
+               </link> - 
+This class contains code and definitions necessary to support common EnOcean
+ exceptions.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanHandler">
+                  <code>EnOceanHandler</code>
+               </link> - 
+The interface used to get callback answers from a RPC or a Message.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanHost">
+                  <code>EnOceanHost</code>
+               </link> - 
+This interface represents an EnOcean Host, a device that offers EnOcean
+ networking features.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanMessage">
+                  <code>EnOceanMessage</code>
+               </link> - 
+Holds the necessary methods to interact with an EnOcean message.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.EnOceanRPC">
+                  <code>EnOceanRPC</code>
+               </link> - 
+A very basic interface for RPCs.
+   </para>
+         </listitem>
+      </itemizedlist>
+   </section>
+   <section xreflabel="EnOceanChannel"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanChannel">
+      <title>public abstract EnOceanChannel</title>
+      <para>
+Holds the raw value and channel identification info of an EnOceanChannel.
+   </para>
+      <section xreflabel="getChannelId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanChannel.getChannelId--">
+         <title>public abstract String getChannelId()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The unique ID of this channel.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getOffset()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanChannel.getOffset--">
+         <title>public abstract int getOffset()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The offset, in bits, where this channel is found in the telegram.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRawValue()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanChannel.getRawValue--">
+         <title>public abstract byte[][] getRawValue()</title>
+         <para role="description">
+Gets the raw value of this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>corresponding value.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSize()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanChannel.getSize--">
+         <title>public abstract int getSize()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The size, in bits, of this channel.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="setRawValue(byte[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanChannel.setRawValue-byte---">
+         <title>public abstract void setRawValue(byte[][] rawValue)</title>
+         <formalpara role="parameter">
+            <title>rawValue</title>
+            <para/>
+         </formalpara>
+         <para role="description">
+Sets the raw value of a channel.
+   </para>
+      </section>
+   </section>
+   <section xreflabel="EnOceanDevice"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanDevice">
+      <title>public abstract EnOceanDevice</title>
+      <para>
+This interface represents a physical device that communicates over the
+ EnOcean protocol.
+   </para>
+      <section xreflabel="CHIP_ID"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.CHIP_ID">
+         <title>public static final String CHIP_ID = "enocean.device.chip_id"</title>
+         <para>
+Property name for the mandatory CHIP_ID of the device
+   </para>
+      </section>
+      <section xreflabel="DEVICE_CATEGORY"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.DEVICE_CATEGORY">
+         <title>public static final String DEVICE_CATEGORY = "EnOcean"</title>
+         <para>
+Property name for the mandatory DEVICE_CATEGORY of the device
+   </para>
+      </section>
+      <section xreflabel="ENOCEAN_EXPORT"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.ENOCEAN_EXPORT">
+         <title>public static final String ENOCEAN_EXPORT = "enocean.device.export"</title>
+         <para>
+Property name that defines if the device is exported or not. If present,
+ the device is exported.
+   </para>
+      </section>
+      <section xreflabel="FUNC"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.FUNC">
+         <title>public static final String FUNC = "enocean.device.profile.func"</title>
+         <para>
+Property name for the radiotelegram functional type of the profile
+ associated with this device.
+   </para>
+      </section>
+      <section xreflabel="MANUFACTURER"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.MANUFACTURER">
+         <title>public static final String MANUFACTURER = "enocean.device.manufacturer"</title>
+         <para>
+Property name for the manufacturer ID that may be specified by some
+ teach-in messages.
+   </para>
+      </section>
+      <section xreflabel="RORG"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.RORG">
+         <title>public static final String RORG = "enocean.device.profile.rorg"</title>
+         <para>
+Property name for the radiotelegram main type of the profile associated
+ with this device.
+   </para>
+      </section>
+      <section xreflabel="SECURITY_LEVEL_FORMAT"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.SECURITY_LEVEL_FORMAT">
+         <title>public static final String SECURITY_LEVEL_FORMAT = "enocean.device.security_level_format"</title>
+         <para>
+Property name for the security level mask for this device. The format of
+ that mask is specified in EnOcean Security Draft.
+   </para>
+      </section>
+      <section xreflabel="TYPE"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.TYPE">
+         <title>public static final String TYPE = "enocean.device.profile.type"</title>
+         <para>
+Property name for the radiotelegram subtype of the profile associated
+ with this device.
+   </para>
+      </section>
+      <section xreflabel="getChipId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getChipId--">
+         <title>public abstract int getChipId()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean device chip ID.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getEncryptionKey()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getEncryptionKey--">
+         <title>public abstract byte[][] getEncryptionKey()</title>
+         <para role="description">
+Returns the current encryption key used by this device.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The current encryption key, or null.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getFunc()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getFunc--">
+         <title>public abstract int getFunc()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean profile FUNC, or -1 if unknown.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getLearnedDevices()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getLearnedDevices--">
+         <title>public abstract int[][] getLearnedDevices()</title>
+         <para role="description">
+Gets the list of devices the device already has learned.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The list of currently learned device's CHIP_IDs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getManufacturer()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getManufacturer--">
+         <title>public abstract int getManufacturer()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean manufacturer code, -1 if unknown.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRollingCode()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getRollingCode--">
+         <title>public abstract int getRollingCode()</title>
+         <para role="description">
+Get the current rolling code of the device.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The current rolling code in use with this device's
+         communications.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRorg()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getRorg--">
+         <title>public abstract int getRorg()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean profile RORG.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRPCs()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getRPCs--">
+         <title>public abstract Map&lt;Integer, Integer[]&gt; getRPCs()</title>
+         <para role="description">
+Retrieves the currently available RPCs to this device; those are stored
+ using their manfufacturerId:commandId identifiers.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>A list of the available RPCs, in a
+         {@code Map&lt;Integer, Integer[]&gt;} form.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSecurityLevelFormat()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getSecurityLevelFormat--">
+         <title>public abstract int getSecurityLevelFormat()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean security level format, or 0 as default (no security)</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getType()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.getType--">
+         <title>public abstract int getType()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The EnOcean profile TYPE, or -1 if unknown.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="invoke(EnOceanRPC,EnOceanHandler)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.invoke-EnOceanRPC-EnOceanHandler-">
+         <title>public abstract void invoke(EnOceanRPC rpc, EnOceanHandler handler)</title>
+         <formalpara role="parameter">
+            <title>rpc</title>
+            <para/>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>handler</title>
+            <para/>
+         </formalpara>
+         <para role="description">
+Sends an RPC to the remote device.
+   </para>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– </para>
+         </formalpara>
+      </section>
+      <section xreflabel="remove()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.remove--">
+         <title>public abstract void remove()</title>
+         <para role="description">
+Removes the device's OSGi service from OSGi service platform.
+   </para>
+      </section>
+      <section xreflabel="setEncryptionKey(byte[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.setEncryptionKey-byte---">
+         <title>public abstract void setEncryptionKey(byte[][] key)</title>
+         <formalpara role="parameter">
+            <title>key</title>
+            <para>the encryption key to be set.</para>
+         </formalpara>
+         <para role="description">
+Sets the encryption key of the device.
+   </para>
+      </section>
+      <section xreflabel="setFunc(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.setFunc-int-">
+         <title>public abstract void setFunc(int func)</title>
+         <formalpara role="parameter">
+            <title>func</title>
+            <para>the EEP func of the device;</para>
+         </formalpara>
+         <para role="description">
+Manually sets the EEP FUNC of the device.
+   </para>
+      </section>
+      <section xreflabel="setLearningMode(boolean)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.setLearningMode-boolean-">
+         <title>public abstract void setLearningMode(boolean learnMode)</title>
+         <formalpara role="parameter">
+            <title>learnMode</title>
+            <para>the desired state: true for learning mode, false to
+        disable it.</para>
+         </formalpara>
+         <para role="description">
+Switches the device into learning mode.
+   </para>
+      </section>
+      <section xreflabel="setRollingCode(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.setRollingCode-int-">
+         <title>public abstract void setRollingCode(int rollingCode)</title>
+         <formalpara role="parameter">
+            <title>rollingCode</title>
+            <para>the rolling code to be set or initiated.</para>
+         </formalpara>
+         <para role="description">
+Sets the rolling code of this device.
+   </para>
+      </section>
+      <section xreflabel="setType(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanDevice.setType-int-">
+         <title>public abstract void setType(int type)</title>
+         <formalpara role="parameter">
+            <title>type</title>
+            <para>the EEP type of the device;</para>
+         </formalpara>
+         <para role="description">
+Manually sets the EEP TYPE of the device.
+   </para>
+      </section>
+   </section>
+   <section xreflabel="EnOceanEvent"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanEvent">
+      <title>public final class EnOceanEvent</title>
+      <para>
+Constants for use in EnOcean events.
+   </para>
+      <section xreflabel="PROPERTY_EXPORTED"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanEvent.PROPERTY_EXPORTED">
+         <title>public static final String PROPERTY_EXPORTED = "enocean.message.is_exported"</title>
+         <para>
+Property key used to tell apart messages that are exported or imported.
+   </para>
+      </section>
+      <section xreflabel="PROPERTY_MESSAGE"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanEvent.PROPERTY_MESSAGE">
+         <title>public static final String PROPERTY_MESSAGE = "enocean.message"</title>
+         <para>
+Property key for the {@link EnOceanMessage} object embedded in an event.
+   </para>
+      </section>
+      <section xreflabel="PROPERTY_RPC"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanEvent.PROPERTY_RPC">
+         <title>public static final String PROPERTY_RPC = "enocean.rpc"</title>
+         <para>
+Property key for the {@link EnOceanRPC} object embedded in an event.
+   </para>
+      </section>
+      <section xreflabel="TOPIC_MSG_RECEIVED"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanEvent.TOPIC_MSG_RECEIVED">
+         <title>public static final String TOPIC_MSG_RECEIVED = "org/osgi/service/enocean/EnOceanEvent/MESSAGE_RECEIVED"</title>
+         <para>
+Main topic for all OSGi dispatched EnOcean messages, imported or
+ exported.
+   </para>
+      </section>
+      <section xreflabel="TOPIC_RPC_BROADCAST"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanEvent.TOPIC_RPC_BROADCAST">
+         <title>public static final String TOPIC_RPC_BROADCAST = "org/osgi/service/enocean/EnOceanEvent/RPC_BROADCAST"</title>
+         <para>
+Main topic for all OSGi broadcast EnOcean RPCs, imported or exported.
+   </para>
+      </section>
+   </section>
+   <section xreflabel="EnOceanException"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanException">
+      <title>public class EnOceanException<?line-break?> extends Exception</title>
+      <para>
+This class contains code and definitions necessary to support common EnOcean
+ exceptions. This class is mostly used with low-level, gateway-interacting
+ code : EnOceanHost.
+   </para>
+      <section xreflabel="ESP_RET_NOT_SUPPORTED"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.ESP_RET_NOT_SUPPORTED">
+         <title>public static final short ESP_RET_NOT_SUPPORTED = 2</title>
+         <para>
+Operation is not supported by the target device.
+   </para>
+      </section>
+      <section xreflabel="ESP_RET_OPERATION_DENIED"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.ESP_RET_OPERATION_DENIED">
+         <title>public static final short ESP_RET_OPERATION_DENIED = 4</title>
+         <para>
+The operation was denied.
+   </para>
+      </section>
+      <section xreflabel="ESP_RET_WRONG_PARAM"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.ESP_RET_WRONG_PARAM">
+         <title>public static final short ESP_RET_WRONG_PARAM = 3</title>
+         <para>
+One of the parameters was badly specified or missing.
+   </para>
+      </section>
+      <section xreflabel="ESP_UNEXPECTED_FAILURE"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.ESP_UNEXPECTED_FAILURE">
+         <title>public static final short ESP_UNEXPECTED_FAILURE = 1</title>
+         <para>
+Unexpected failure.
+   </para>
+      </section>
+      <section xreflabel="INVALID_TELEGRAM"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.INVALID_TELEGRAM">
+         <title>public static final short INVALID_TELEGRAM = 240</title>
+         <para>
+The message was invalid.
+   </para>
+      </section>
+      <section xreflabel="SUCCESS"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanException.SUCCESS">
+         <title>public static final short SUCCESS = 0</title>
+         <para>
+SUCCESS status code.
+   </para>
+      </section>
+      <section xreflabel="EnOceanException(String)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanException.EnOceanException-String-">
+         <title>public  EnOceanException(String errordesc)</title>
+         <formalpara role="parameter">
+            <title>errordesc</title>
+            <para>exception error description</para>
+         </formalpara>
+         <para role="description">
+Constructor for EnOceanException
+   </para>
+      </section>
+      <section xreflabel="EnOceanException(int,String)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanException.EnOceanException-int-String-">
+         <title>public  EnOceanException(int errorCode, String errorDesc)</title>
+         <formalpara role="parameter">
+            <title>errorCode</title>
+            <para>the error code.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>errorDesc</title>
+            <para>the description.</para>
+         </formalpara>
+         <para role="description">
+Constructor for EnOceanException
+   </para>
+      </section>
+      <section xreflabel="EnOceanException(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanException.EnOceanException-int-">
+         <title>public  EnOceanException(int errorCode)</title>
+         <formalpara role="parameter">
+            <title>errorCode</title>
+            <para>An error code.</para>
+         </formalpara>
+         <para role="description">
+Constructor for EnOceanException
+   </para>
+      </section>
+      <section xreflabel="errorCode()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanException.errorCode--">
+         <title>public int errorCode()</title>
+         <para role="description">
+Constructor for EnOceanException
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>An EnOcean error code, defined by the EnOcean Forum working
+         committee or an EnOcean vendor.</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanHandler"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanHandler">
+      <title>public abstract EnOceanHandler</title>
+      <para>
+The interface used to get callback answers from a RPC or a Message.
+   </para>
+      <section xreflabel="notifyResponse(EnOceanRPC,byte[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHandler.notifyResponse-EnOceanRPC-byte---">
+         <title>public abstract void notifyResponse(EnOceanRPC original, byte[][] payload)</title>
+         <formalpara role="parameter">
+            <title>original</title>
+            <para>the original {@link EnOceanRPC} that originated this
+        answer.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>payload</title>
+            <para>the payload of the response; may be deserialized to an
+        {@link EnOceanRPC} object.</para>
+         </formalpara>
+         <para role="description">
+Notifies of the answer to a RPC.
+   </para>
+      </section>
+   </section>
+   <section xreflabel="EnOceanHost"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanHost">
+      <title>public abstract EnOceanHost</title>
+      <para>
+This interface represents an EnOcean Host, a device that offers EnOcean
+ networking features.
+   </para>
+      <section xreflabel="HOST_ID"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanHost.HOST_ID">
+         <title>public static final Object HOST_ID</title>
+         <para>
+The unique ID for this Host: this matches the CHIP_ID of the EnOcean
+ Gateway Chip it embodies.
+   </para>
+      </section>
+      <section xreflabel="REPEATER_LEVEL_OFF"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_OFF">
+         <title>public static final int REPEATER_LEVEL_OFF = 0</title>
+         <para>
+repeater level to disable repeating; this is the default.
+   </para>
+      </section>
+      <section xreflabel="REPEATER_LEVEL_ONE"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_ONE">
+         <title>public static final int REPEATER_LEVEL_ONE = 1</title>
+         <para>
+repeater level to repeat every telegram at most once.
+   </para>
+      </section>
+      <section xreflabel="REPEATER_LEVEL_TWO"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_TWO">
+         <title>public static final int REPEATER_LEVEL_TWO = 2</title>
+         <para>
+repeater level to repeat every telegram at most twice.
+   </para>
+      </section>
+      <section xreflabel="apiVersion()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.apiVersion--">
+         <title>public abstract String apiVersion() throws EnOceanException</title>
+         <para role="description">
+Returns the chip's API version info (cf. ESP3 command 0x03:
+ CO_RD_VERSION)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>a String object containing the API version info.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="appVersion()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.appVersion--">
+         <title>public abstract String appVersion() throws EnOceanException</title>
+         <para role="description">
+Returns the chip's application version info (cf. ESP3 command 0x03:
+ CO_RD_VERSION)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>a String object containing the application version info.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getBaseID()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.getBaseID--">
+         <title>public abstract int getBaseID() throws EnOceanException</title>
+         <para role="description">
+Gets the BASE_ID of the chip, if set (cf. ESP3 command 0x08:
+ CO_RD_IDBASE)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the BASE_ID of the device as defined in EnOcean specification</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getChipId(String)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.getChipId-String-">
+         <title>public abstract int getChipId(String servicePID) throws EnOceanException</title>
+         <formalpara role="parameter">
+            <title>servicePID</title>
+            <para/>
+         </formalpara>
+         <para role="description">
+Retrieves the CHIP_ID associated with the given servicePID, if existing
+ on this chip.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the associated CHIP_ID of the exported device.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRepeaterLevel()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.getRepeaterLevel--">
+         <title>public abstract int getRepeaterLevel() throws EnOceanException</title>
+         <para role="description">
+Gets the current repeater level of the host (cf. ESP3 command 0x0A:
+ CO_RD_REPEATER)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>one of the Repeater Level constants as defined above.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="reset()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.reset--">
+         <title>public abstract void reset() throws EnOceanException</title>
+         <para role="description">
+Reset the EnOcean Host (cf. ESP3 command 0x02: CO_WR_RESET)
+   </para>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="setBaseID(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.setBaseID-int-">
+         <title>public abstract void setBaseID(int baseID) throws EnOceanException</title>
+         <formalpara role="parameter">
+            <title>baseID</title>
+            <para>to be set.</para>
+         </formalpara>
+         <para role="description">
+Sets the base ID of the device, may be used up to 10 times (cf. ESP3
+ command 0x07: CO_WR_IDBASE)
+   </para>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="setRepeaterLevel(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanHost.setRepeaterLevel-int-">
+         <title>public abstract void setRepeaterLevel(int level) throws EnOceanException</title>
+         <formalpara role="parameter">
+            <title>level</title>
+            <para>one of the Repeater Level constants as defined above.</para>
+         </formalpara>
+         <para role="description">
+Sets the repeater level on the host (cf. ESP3 command 0x09:
+ CO_WR_REPEATER)
+   </para>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>EnOceanException</code>– if any problem occurs.</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanMessage"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanMessage">
+      <title>public abstract EnOceanMessage</title>
+      <para>
+Holds the necessary methods to interact with an EnOcean message.
+   </para>
+      <section xreflabel="getBytes()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getBytes--">
+         <title>public abstract byte[][] getBytes()</title>
+         <para role="description">
+Gets the bytes corresponding to the whole message, including the CRC. The
+ generated byte[] array may be sent to an EnOcean gateway and is conform
+ to EnOcean Radio Protocol.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The serialized byte list corresponding to the binary message.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getDbm()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getDbm--">
+         <title>public abstract int getDbm()</title>
+         <para role="description">
+Returns the average RSSI on all the received subtelegrams, including
+ redundant ones.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The average RSSI perceived.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getDestinationId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getDestinationId--">
+         <title>public abstract int getDestinationId()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message's destination ID, or -1</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getFunc()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getFunc--">
+         <title>public abstract int getFunc()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message's FUNC</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getPayloadBytes()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getPayloadBytes--">
+         <title>public abstract byte[][] getPayloadBytes()</title>
+         <para role="description">
+Returns the payload bytes of this message.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>corresponding value.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRorg()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getRorg--">
+         <title>public abstract int getRorg()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message's RORG</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSecurityLevelFormat()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getSecurityLevelFormat--">
+         <title>public abstract int getSecurityLevelFormat()</title>
+         <para role="description">
+Returns the security level of this message, as specified in the 'Security
+ of EnOcean Radio Networks' draft, section 4.2.1.3.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The security level format.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSenderId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getSenderId--">
+         <title>public abstract int getSenderId()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message's Sender ID</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getStatus()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getStatus--">
+         <title>public abstract int getStatus()</title>
+         <para role="description">
+Gets the current EnOcean status of the Message. The 'status' byte is
+ actually a bitfield that mainly holds repeater information, teach-in
+ status, and more or less information depending on the radiotelegram type.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the current EnOcean status of this message.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSubTelNum()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getSubTelNum--">
+         <title>public abstract int getSubTelNum()</title>
+         <para role="description">
+Returns the number of subtelegrams (usually 1) this Message carries.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The number of subtelegrams in the case of multiframe messages.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getType()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanMessage.getType--">
+         <title>public abstract int getType()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message's TYPE</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanRPC"
+            role="class"
+            xml:id="org.osgi.service.enocean.EnOceanRPC">
+      <title>public abstract EnOceanRPC</title>
+      <para>
+A very basic interface for RPCs.
+   </para>
+      <section xreflabel="FUNCTION_ID"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.FUNCTION_ID">
+         <title>public static final String FUNCTION_ID = "enocean.rpc.function_id"</title>
+         <para>
+The Function ID property string, used in EventAdmin RPC broadcasting.
+   </para>
+      </section>
+      <section xreflabel="MANUFACTURER_ID"
+               role="field"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.MANUFACTURER_ID">
+         <title>public static final String MANUFACTURER_ID = "enocean.rpc.manufacturer_id"</title>
+         <para>
+The Manufacturer ID property string, used in EventAdmin RPC broadcasting.
+   </para>
+      </section>
+      <section xreflabel="getFunctionId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.getFunctionId--">
+         <title>public abstract int getFunctionId()</title>
+         <para role="description">
+Gets the functionID for this RPC.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>function id.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getManufacturerId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.getManufacturerId--">
+         <title>public abstract int getManufacturerId()</title>
+         <para role="description">
+Gets the manufacturerID for this RPC.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>manufacturer id.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getName()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.getName--">
+         <title>public abstract String getName()</title>
+         <para role="description">
+Get a friendly name for the RPC
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the name.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getPayload()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.getPayload--">
+         <title>public abstract byte[][] getPayload()</title>
+         <para role="description">
+Gets the current payload of the RPC.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the payload, in bytes, of this RPC.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getSenderId()"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.getSenderId--">
+         <title>public abstract int getSenderId()</title>
+         <para role="description">
+Sets the RPC's senderID.
+ 
+ This member has to belong to {@link EnOceanRPC} interface, for the object
+ may be sent as a standalone using EventAdmin for instance.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>sender id.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="setSenderId(int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.EnOceanRPC.setSenderId-int-">
+         <title>public abstract void setSenderId(int chipId)</title>
+         <formalpara role="parameter">
+            <title>chipId</title>
+            <para/>
+         </formalpara>
+         <para role="description">
+Sets the RPC's senderID.
+   </para>
+      </section>
+   </section>
+</section>

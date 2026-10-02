@@ -1,0 +1,510 @@
+<section xmlns="http://docbook.org/ns/docbook"
+         xreflabel="org.osgi.service.enocean.descriptions"
+         version="5"
+         role="package"
+         xml:id="org.osgi.service.enocean.descriptions">
+   <title>org.osgi.service.enocean.descriptions</title>
+   <info>
+      <releaseinfo xml:id="org.osgi.service.enocean.descriptions-version">Version 1.0</releaseinfo>
+      <edition xml:id="org.osgi.service.enocean.descriptions-version.number">1.0</edition>
+   </info>
+   <para>
+EnOcean Descriptions Package Version 1.0.
+ 
+ </para>
+   <para>
+ Bundles wishing to use this package must list the package in the
+ Import-Package header of the bundle's manifest. This package has two types of
+ users: the consumers that use the API in this package and the providers that
+ implement the API in this package.
+ 
+ </para>
+   <para>
+ Example import for consumers using the API in this package:
+ </para>
+   <para>
+ {@code  Import-Package: org.osgi.service.enocean.descriptions; version="[1.0,2.0)"}
+ </para>
+   <para>
+ Example import for providers implementing the API in this package:
+ </para>
+   <para>
+ {@code  Import-Package: org.osgi.service.enocean.descriptions; version="[1.0,1.1)"}</para>
+   <section role="summary">
+      <title>Summary</title>
+      <itemizedlist>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanChannelDescription">
+                  <code>EnOceanChannelDescription</code>
+               </link> - 
+Public and registered description interface for a channel.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet">
+                  <code>EnOceanChannelDescriptionSet</code>
+               </link> - 
+This interface represents an EnOcean Channel Description Set.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue">
+                  <code>EnOceanChannelEnumValue</code>
+               </link> - 
+This transitional interface is used to define all the possible values taken
+ by an enumerated channel.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription">
+                  <code>EnOceanDataChannelDescription</code>
+               </link> - 
+Subinterface of {@link EnOceanChannelDescription} that describes physical
+ measuring channels.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription">
+                  <code>EnOceanEnumChannelDescription</code>
+               </link> - 
+Subinterface of {@link EnOceanChannelDescription} that describes enumerated
+ channels.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanFlagChannelDescription">
+                  <code>EnOceanFlagChannelDescription</code>
+               </link> - 
+Subinterface of {@link EnOceanChannelDescription} that describes boolean
+ channels.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanMessageDescription">
+                  <code>EnOceanMessageDescription</code>
+               </link> - 
+This interface represents an EnOcean Message Description.
+   </para>
+         </listitem>
+         <listitem>
+            <para>
+               <link linkend="org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet">
+                  <code>EnOceanMessageDescriptionSet</code>
+               </link> - 
+This interface represents an EnOcean Message Description Set.
+   </para>
+         </listitem>
+      </itemizedlist>
+   </section>
+   <section xreflabel="EnOceanChannelDescription"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription">
+      <title>public abstract EnOceanChannelDescription</title>
+      <para>
+Public and registered description interface for a channel. Encompasses all
+ the possible subtypes for a channel.
+   </para>
+      <section xreflabel="CHANNEL_ID"
+               role="field"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.CHANNEL_ID">
+         <title>public static final String CHANNEL_ID = "enocean.channel.description.channel_id"</title>
+         <para>
+The unique ID of this EnOceanChannelDescription object.
+   </para>
+      </section>
+      <section xreflabel="TYPE_DATA"
+               role="field"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_DATA">
+         <title>public static final String TYPE_DATA = "enocean.channel.description.data"</title>
+         <para>
+A DATA channel maps itself to a {@link Double} value representing a
+ physical measure.
+   </para>
+      </section>
+      <section xreflabel="TYPE_ENUM"
+               role="field"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_ENUM">
+         <title>public static final String TYPE_ENUM = "enocean.channel.description.enum"</title>
+         <para>
+An ENUM channel maps itself to one between a list of discrete
+ {@link EnOceanChannelEnumValue} "value objects".
+   </para>
+      </section>
+      <section xreflabel="TYPE_FLAG"
+               role="field"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_FLAG">
+         <title>public static final String TYPE_FLAG = "enocean.channel.description.flag"</title>
+         <para>
+A FLAG channel maps itself to a {@link Boolean} value.
+   </para>
+      </section>
+      <section xreflabel="TYPE_RAW"
+               role="field"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_RAW">
+         <title>public static final String TYPE_RAW = "enocean.channel.description.raw"</title>
+         <para>
+A RAW channel is only made of bytes.
+   </para>
+      </section>
+      <section xreflabel="deserialize(byte[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.deserialize-byte---">
+         <title>public abstract Object deserialize(byte[][] bytes)</title>
+         <formalpara role="parameter">
+            <title>bytes</title>
+            <para>the right-aligned raw bytes.</para>
+         </formalpara>
+         <para role="description">
+Tries to deserialize a series of bytes into a documented value object
+ (raw bytes, Double or {@link EnOceanChannelEnumValue}. Of course this
+ method will be specialized for each {@link EnOceanChannelDescription}
+ subinterface, depending on the type of this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>a value object.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– </para>
+         </formalpara>
+      </section>
+      <section xreflabel="getType()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.getType--">
+         <title>public abstract String getType()</title>
+         <para role="description">
+Retrieves the type of the channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>one of the above-described types.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="serialize(Object)"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescription.serialize-Object-">
+         <title>public abstract byte[][] serialize(Object obj)</title>
+         <formalpara role="parameter">
+            <title>obj</title>
+            <para>the value of the channel.</para>
+         </formalpara>
+         <para role="description">
+Tries to serialize the channel into a series of bytes.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the right-aligned value, in raw bytes, of the channel.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– </para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanChannelDescriptionSet"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet">
+      <title>public abstract EnOceanChannelDescriptionSet</title>
+      <para>
+This interface represents an EnOcean Channel Description Set.
+ {@link EnOceanChannelDescriptionSet} is registered as an OSGi Service.
+ Provides a method to retrieve the {@link EnOceanChannelDescription} objects
+ it documents.
+   </para>
+      <section xreflabel="getChannelDescription(String)"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet.getChannelDescription-String-">
+         <title>public abstract EnOceanChannelDescription getChannelDescription(String channelId)</title>
+         <formalpara role="parameter">
+            <title>channelId</title>
+            <para>the unique string identifier of the description object.</para>
+         </formalpara>
+         <para role="description">
+Retrieves a {@link EnOceanChannelDescription} object according to its
+ identifier.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The corresponding {@link EnOceanChannelDescription} object, or
+         null.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– if the supplied String is invalid, null,
+         or other reason.</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanChannelEnumValue"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue">
+      <title>public abstract EnOceanChannelEnumValue</title>
+      <para>
+This transitional interface is used to define all the possible values taken
+ by an enumerated channel.
+   </para>
+      <section xreflabel="getDescription()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getDescription--">
+         <title>public abstract String getDescription()</title>
+         <para role="description">
+A non-mandatory description of what this enumerated value is about.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the description of this channel.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getStart()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getStart--">
+         <title>public abstract int getStart()</title>
+         <para role="description">
+The start value of the enumeration.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the start value.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getStop()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getStop--">
+         <title>public abstract int getStop()</title>
+         <para role="description">
+The stop value of the enumeration.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the stop value.</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanDataChannelDescription"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription">
+      <title>public abstract EnOceanDataChannelDescription<?line-break?> extends EnOceanChannelDescription</title>
+      <para>
+Subinterface of {@link EnOceanChannelDescription} that describes physical
+ measuring channels.
+   </para>
+      <section xreflabel="getDomainStart()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getDomainStart--">
+         <title>public abstract int getDomainStart()</title>
+         <para role="description">
+The start of the raw input range for this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the domain start.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getDomainStop()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getDomainStop--">
+         <title>public abstract int getDomainStop()</title>
+         <para role="description">
+The end of the raw input range for this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the domain stop.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRangeStart()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getRangeStart--">
+         <title>public abstract double getRangeStart()</title>
+         <para role="description">
+The scale start at which this channel will be mapped to (-20,0°C for
+ instance)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the range start.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getRangeStop()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getRangeStop--">
+         <title>public abstract double getRangeStop()</title>
+         <para role="description">
+The scale stop at which this channel will be mapped to (+30,0°C for
+ instance)
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the range stop.</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getUnit()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getUnit--">
+         <title>public abstract String getUnit()</title>
+         <para role="description">
+The non-mandatory physical unit description of this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the unit as a String</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanEnumChannelDescription"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription">
+      <title>public abstract EnOceanEnumChannelDescription<?line-break?> extends EnOceanChannelDescription</title>
+      <para>
+Subinterface of {@link EnOceanChannelDescription} that describes enumerated
+ channels.
+   </para>
+      <section xreflabel="getPossibleValues()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription.getPossibleValues--">
+         <title>public abstract EnOceanChannelEnumValue[][] getPossibleValues()</title>
+         <para role="description">
+Gets all the possible value for this channel.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>corresponding value(s).</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanFlagChannelDescription"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanFlagChannelDescription">
+      <title>public abstract EnOceanFlagChannelDescription<?line-break?> extends EnOceanChannelDescription</title>
+      <para>
+Subinterface of {@link EnOceanChannelDescription} that describes boolean
+ channels.
+   </para>
+   </section>
+   <section xreflabel="EnOceanMessageDescription"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescription">
+      <title>public abstract EnOceanMessageDescription</title>
+      <para>
+This interface represents an EnOcean Message Description.
+   </para>
+      <section xreflabel="deserialize(byte[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescription.deserialize-byte---">
+         <title>public abstract EnOceanChannel[][] deserialize(byte[][] bytes)</title>
+         <formalpara role="parameter">
+            <title>bytes</title>
+            <para>to be deserialized.</para>
+         </formalpara>
+         <para role="description">
+Deserializes an array of bytes into the EnOceanChannels available to the
+ payload, if possible.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>deserialized value.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– if the actual instance type of the
+         message is not compatible with the bytes it is fed with (RORG to
+         begin with).</para>
+         </formalpara>
+      </section>
+      <section xreflabel="getMessageDescription()"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescription.getMessageDescription--">
+         <title>public abstract String getMessageDescription()</title>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>the message description containing the RORG, (and the FUNC, and
+         the TYPE if available), as well as, the EEP's "title" (e.g. for
+         F60201: Rocker Switch, 2 Rocker; Light and Blind Control -
+         Application Style 1).</para>
+         </formalpara>
+      </section>
+      <section xreflabel="serialize(EnOceanChannel[])"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescription.serialize-EnOceanChannel---">
+         <title>public abstract byte[][] serialize(EnOceanChannel[][] channels)</title>
+         <formalpara role="parameter">
+            <title>channels</title>
+            <para>to be serialized.</para>
+         </formalpara>
+         <para role="description">
+Serializes a series of {@link EnOceanChannel} objects into the
+ corresponding byte[] sequence.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>serialized value.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– if the given channels is null.</para>
+         </formalpara>
+      </section>
+   </section>
+   <section xreflabel="EnOceanMessageDescriptionSet"
+            role="class"
+            xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet">
+      <title>public abstract EnOceanMessageDescriptionSet</title>
+      <para>
+This interface represents an EnOcean Message Description Set.
+ {@link EnOceanMessageDescriptionSet} is registered as an OSGi Service.
+ Provides method to retrieve the {@link EnOceanMessageDescription} objects it
+ documents.
+   </para>
+      <section xreflabel="getMessageDescription(int,int,int,int)"
+               role="method"
+               xml:id="org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet.getMessageDescription-int-int-int-int-">
+         <title>public abstract EnOceanMessageDescription getMessageDescription(int rorg, int func, int type, int extra)</title>
+         <formalpara role="parameter">
+            <title>rorg</title>
+            <para>the radio telegram type of the message.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>func</title>
+            <para>The func subtype of this message.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>type</title>
+            <para>The type subselector.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>extra</title>
+            <para>Some extra information; some
+        {@link EnOceanMessageDescription} objects need an additional
+        specifier. If not needed, has to be set to -1.</para>
+         </formalpara>
+         <para role="description">
+Retrieves a {@link EnOceanMessageDescription} object according to its
+ identifiers. See EnOcean Equipment Profile Specification for more
+ details.
+   </para>
+         <formalpara role="parameter">
+            <title>Returns</title>
+            <para>The {@link EnOceanMessageDescription} object looked for, or null.</para>
+         </formalpara>
+         <formalpara role="parameter">
+            <title>Throws</title>
+            <para>
+               <code>IllegalArgumentException</code>– if there was an error related to the
+         input arguments.</para>
+         </formalpara>
+      </section>
+   </section>
+</section>

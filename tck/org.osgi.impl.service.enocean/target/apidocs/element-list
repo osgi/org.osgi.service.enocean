@@ -1,0 +1,7 @@
+org.osgi.impl.service.enocean
+org.osgi.impl.service.enocean.basedriver
+org.osgi.impl.service.enocean.basedriver.esp
+org.osgi.impl.service.enocean.basedriver.impl
+org.osgi.impl.service.enocean.basedriver.radio
+org.osgi.impl.service.enocean.utils
+org.osgi.impl.service.enocean.utils.teststep
