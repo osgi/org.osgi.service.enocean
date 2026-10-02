@@ -1,0 +1,1533 @@
+<?xml version='1.0' encoding='utf-8'?>
+<top>
+  <package name='org.osgi.service.enocean' fqn='org.osgi.service.enocean' qn='org.osgi.service.enocean'>
+<org.osgi.annotation.versioning.Version><value>1.0</value>
+</org.osgi.annotation.versioning.Version>
+   <lead>
+EnOcean Package Version 1.0.
+   </lead>
+   <description>
+EnOcean Package Version 1.0.
+ 
+ <p>
+ Bundles wishing to use this package must list the package in the
+ Import-Package header of the bundle's manifest. This package has two types of
+ users: the consumers that use the API in this package and the providers that
+ implement the API in this package.
+ 
+ </p><p>
+ Example import for consumers using the API in this package:
+ </p><p>
+ {@code  Import-Package: org.osgi.service.enocean; version="[1.0,2.0)"}
+ </p><p>
+ Example import for providers implementing the API in this package:
+ </p><p>
+ {@code  Import-Package: org.osgi.service.enocean; version="[1.0,1.1)"}</p>
+   </description>
+<author>@author $Id: 512949c776d34e966ca088859ae1e8f6aed47c6f $</author>
+  <class name='EnOceanChannel' fqn='org.osgi.service.enocean.EnOceanChannel' qn='EnOceanChannel' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+Holds the raw value and channel identification info of an EnOceanChannel.
+   </lead>
+   <description>
+Holds the raw value and channel identification info of an EnOceanChannel.
+   </description>
+<author>@author $Id: de13937dd404a289df42d0fc091b48c4fd4e6e7c $</author>
+    <method name='getChannelId' fqn='org.osgi.service.enocean.EnOceanChannel.getChannelId' qn='EnOceanChannel.getChannelId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The unique ID of this channel.</return>
+
+
+
+     </method>
+    <method name='getOffset' fqn='org.osgi.service.enocean.EnOceanChannel.getOffset' qn='EnOceanChannel.getOffset()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The offset, in bits, where this channel is found in the telegram.</return>
+
+
+
+     </method>
+    <method name='getSize' fqn='org.osgi.service.enocean.EnOceanChannel.getSize' qn='EnOceanChannel.getSize()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The size, in bits, of this channel.</return>
+
+
+
+     </method>
+    <method name='getRawValue' fqn='org.osgi.service.enocean.EnOceanChannel.getRawValue' qn='EnOceanChannel.getRawValue()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Gets the raw value of this channel.
+   </lead>
+   <description>
+Gets the raw value of this channel.
+   </description>
+
+
+<return>corresponding value.</return>
+
+
+
+     </method>
+    <method name='setRawValue' fqn='org.osgi.service.enocean.EnOceanChannel.setRawValue' qn='EnOceanChannel.setRawValue(byte[])' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(byte[])' flatSignature='(byte[])'>
+   <lead>
+Sets the raw value of a channel.
+   </lead>
+   <description>
+Sets the raw value of a channel.
+   </description>
+
+<param name='rawValue'/>
+
+
+
+
+    <parameter name='rawValue' dimension='[]' typeName='byte[]' fqn='byte[]' varargs='false'/>
+     </method>
+  </class>
+  <class name='EnOceanDevice' fqn='org.osgi.service.enocean.EnOceanDevice' qn='EnOceanDevice' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This interface represents a physical device that communicates over the
+ EnOcean protocol.
+   </lead>
+   <description>
+This interface represents a physical device that communicates over the
+ EnOcean protocol.
+   </description>
+<author>@author $Id: 93ab66783daf739ccd92210cd704eaea799ffc10 $</author>
+    <method name='getChipId' fqn='org.osgi.service.enocean.EnOceanDevice.getChipId' qn='EnOceanDevice.getChipId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean device chip ID.</return>
+
+
+
+     </method>
+    <method name='getRorg' fqn='org.osgi.service.enocean.EnOceanDevice.getRorg' qn='EnOceanDevice.getRorg()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean profile RORG.</return>
+
+
+
+     </method>
+    <method name='getFunc' fqn='org.osgi.service.enocean.EnOceanDevice.getFunc' qn='EnOceanDevice.getFunc()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean profile FUNC, or -1 if unknown.</return>
+
+
+
+     </method>
+    <method name='getType' fqn='org.osgi.service.enocean.EnOceanDevice.getType' qn='EnOceanDevice.getType()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean profile TYPE, or -1 if unknown.</return>
+
+
+
+     </method>
+    <method name='getManufacturer' fqn='org.osgi.service.enocean.EnOceanDevice.getManufacturer' qn='EnOceanDevice.getManufacturer()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean manufacturer code, -1 if unknown.</return>
+
+
+
+     </method>
+    <method name='getSecurityLevelFormat' fqn='org.osgi.service.enocean.EnOceanDevice.getSecurityLevelFormat' qn='EnOceanDevice.getSecurityLevelFormat()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>The EnOcean security level format, or 0 as default (no security)</return>
+
+
+
+     </method>
+    <method name='setFunc' fqn='org.osgi.service.enocean.EnOceanDevice.setFunc' qn='EnOceanDevice.setFunc(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Manually sets the EEP FUNC of the device.
+   </lead>
+   <description>
+Manually sets the EEP FUNC of the device.
+   </description>
+
+<param name='func'>the EEP func of the device;</param>
+
+
+
+
+    <parameter name='func' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+    <method name='setType' fqn='org.osgi.service.enocean.EnOceanDevice.setType' qn='EnOceanDevice.setType(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Manually sets the EEP TYPE of the device.
+   </lead>
+   <description>
+Manually sets the EEP TYPE of the device.
+   </description>
+
+<param name='type'>the EEP type of the device;</param>
+
+
+
+
+    <parameter name='type' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+    <method name='setLearningMode' fqn='org.osgi.service.enocean.EnOceanDevice.setLearningMode' qn='EnOceanDevice.setLearningMode(boolean)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(boolean)' flatSignature='(boolean)'>
+   <lead>
+Switches the device into learning mode.
+   </lead>
+   <description>
+Switches the device into learning mode.
+   </description>
+
+<param name='learnMode'>the desired state: true for learning mode, false to
+        disable it.</param>
+
+
+
+
+    <parameter name='learnMode' dimension='' typeName='boolean' fqn='boolean' varargs='false'/>
+     </method>
+    <method name='getRollingCode' fqn='org.osgi.service.enocean.EnOceanDevice.getRollingCode' qn='EnOceanDevice.getRollingCode()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Get the current rolling code of the device.
+   </lead>
+   <description>
+Get the current rolling code of the device.
+   </description>
+
+
+<return>The current rolling code in use with this device's
+         communications.</return>
+
+
+
+     </method>
+    <method name='setRollingCode' fqn='org.osgi.service.enocean.EnOceanDevice.setRollingCode' qn='EnOceanDevice.setRollingCode(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Sets the rolling code of this device.
+   </lead>
+   <description>
+Sets the rolling code of this device.
+   </description>
+
+<param name='rollingCode'>the rolling code to be set or initiated.</param>
+
+
+
+
+    <parameter name='rollingCode' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+    <method name='getEncryptionKey' fqn='org.osgi.service.enocean.EnOceanDevice.getEncryptionKey' qn='EnOceanDevice.getEncryptionKey()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Returns the current encryption key used by this device.
+   </lead>
+   <description>
+Returns the current encryption key used by this device.
+   </description>
+
+
+<return>The current encryption key, or null.</return>
+
+
+
+     </method>
+    <method name='setEncryptionKey' fqn='org.osgi.service.enocean.EnOceanDevice.setEncryptionKey' qn='EnOceanDevice.setEncryptionKey(byte[])' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(byte[])' flatSignature='(byte[])'>
+   <lead>
+Sets the encryption key of the device.
+   </lead>
+   <description>
+Sets the encryption key of the device.
+   </description>
+
+<param name='key'>the encryption key to be set.</param>
+
+
+
+
+    <parameter name='key' dimension='[]' typeName='byte[]' fqn='byte[]' varargs='false'/>
+     </method>
+    <method name='getLearnedDevices' fqn='org.osgi.service.enocean.EnOceanDevice.getLearnedDevices' qn='EnOceanDevice.getLearnedDevices()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int[]' qualifiedTypeName='int[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Gets the list of devices the device already has learned.
+   </lead>
+   <description>
+Gets the list of devices the device already has learned.
+   </description>
+
+
+<return>The list of currently learned device's CHIP_IDs.</return>
+
+
+
+     </method>
+    <method name='getRPCs' fqn='org.osgi.service.enocean.EnOceanDevice.getRPCs' qn='EnOceanDevice.getRPCs()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='Map&lt;Integer, Integer[]&gt;' qualifiedTypeName='java.util.Map' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Retrieves the currently available RPCs to this device; those are stored
+ using their manfufacturerId:commandId identifiers.
+   </lead>
+   <description>
+Retrieves the currently available RPCs to this device; those are stored
+ using their manfufacturerId:commandId identifiers.
+   </description>
+
+
+<return>A list of the available RPCs, in a
+         {@code Map&lt;Integer, Integer[]&gt;} form.</return>
+
+
+
+     </method>
+    <method name='invoke' fqn='org.osgi.service.enocean.EnOceanDevice.invoke' qn='EnOceanDevice.invoke(EnOceanRPC,EnOceanHandler)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(org.osgi.service.enocean.EnOceanRPC,org.osgi.service.enocean.EnOceanHandler)' flatSignature='(EnOceanRPC,EnOceanHandler)'>
+   <lead>
+Sends an RPC to the remote device.
+   </lead>
+   <description>
+Sends an RPC to the remote device.
+   </description>
+
+<param name='rpc'/>
+<param name='handler'/>
+
+
+<throws name='IllegalArgumentException'></throws>
+
+
+    <parameter name='rpc' dimension='' typeName='EnOceanRPC' fqn='org.osgi.service.enocean.EnOceanRPC' varargs='false'/>
+    <parameter name='handler' dimension='' typeName='EnOceanHandler' fqn='org.osgi.service.enocean.EnOceanHandler' varargs='false'/>
+     </method>
+    <method name='remove' fqn='org.osgi.service.enocean.EnOceanDevice.remove' qn='EnOceanDevice.remove()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Removes the device's OSGi service from OSGi service platform.
+   </lead>
+   <description>
+Removes the device's OSGi service from OSGi service platform.
+   </description>
+
+
+
+
+
+     </method>
+    <field name='DEVICE_CATEGORY' fqn='org.osgi.service.enocean.EnOceanDevice.DEVICE_CATEGORY' qn='EnOceanDevice.DEVICE_CATEGORY' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"EnOcean"'>
+   <lead>
+Property name for the mandatory DEVICE_CATEGORY of the device
+   </lead>
+   <description>
+Property name for the mandatory DEVICE_CATEGORY of the device
+   </description>
+
+     </field>
+    <field name='CHIP_ID' fqn='org.osgi.service.enocean.EnOceanDevice.CHIP_ID' qn='EnOceanDevice.CHIP_ID' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.chip_id"'>
+   <lead>
+Property name for the mandatory CHIP_ID of the device
+   </lead>
+   <description>
+Property name for the mandatory CHIP_ID of the device
+   </description>
+
+     </field>
+    <field name='RORG' fqn='org.osgi.service.enocean.EnOceanDevice.RORG' qn='EnOceanDevice.RORG' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.profile.rorg"'>
+   <lead>
+Property name for the radiotelegram main type of the profile associated
+ with this device.
+   </lead>
+   <description>
+Property name for the radiotelegram main type of the profile associated
+ with this device.
+   </description>
+
+     </field>
+    <field name='FUNC' fqn='org.osgi.service.enocean.EnOceanDevice.FUNC' qn='EnOceanDevice.FUNC' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.profile.func"'>
+   <lead>
+Property name for the radiotelegram functional type of the profile
+ associated with this device.
+   </lead>
+   <description>
+Property name for the radiotelegram functional type of the profile
+ associated with this device.
+   </description>
+
+     </field>
+    <field name='TYPE' fqn='org.osgi.service.enocean.EnOceanDevice.TYPE' qn='EnOceanDevice.TYPE' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.profile.type"'>
+   <lead>
+Property name for the radiotelegram subtype of the profile associated
+ with this device.
+   </lead>
+   <description>
+Property name for the radiotelegram subtype of the profile associated
+ with this device.
+   </description>
+
+     </field>
+    <field name='MANUFACTURER' fqn='org.osgi.service.enocean.EnOceanDevice.MANUFACTURER' qn='EnOceanDevice.MANUFACTURER' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.manufacturer"'>
+   <lead>
+Property name for the manufacturer ID that may be specified by some
+ teach-in messages.
+   </lead>
+   <description>
+Property name for the manufacturer ID that may be specified by some
+ teach-in messages.
+   </description>
+
+     </field>
+    <field name='SECURITY_LEVEL_FORMAT' fqn='org.osgi.service.enocean.EnOceanDevice.SECURITY_LEVEL_FORMAT' qn='EnOceanDevice.SECURITY_LEVEL_FORMAT' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.security_level_format"'>
+   <lead>
+Property name for the security level mask for this device.
+   </lead>
+   <description>
+Property name for the security level mask for this device. The format of
+ that mask is specified in EnOcean Security Draft.
+   </description>
+
+     </field>
+    <field name='ENOCEAN_EXPORT' fqn='org.osgi.service.enocean.EnOceanDevice.ENOCEAN_EXPORT' qn='EnOceanDevice.ENOCEAN_EXPORT' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.device.export"'>
+   <lead>
+Property name that defines if the device is exported or not.
+   </lead>
+   <description>
+Property name that defines if the device is exported or not. If present,
+ the device is exported.
+   </description>
+
+     </field>
+  </class>
+  <class name='EnOceanEvent' fqn='org.osgi.service.enocean.EnOceanEvent' qn='EnOceanEvent' package='org.osgi.service.enocean' typeParam='' modifiers='public final class' kind='CLASS'>
+   <lead>
+Constants for use in EnOcean events.
+   </lead>
+   <description>
+Constants for use in EnOcean events.
+   </description>
+<author>@author $Id: 71424be577d213f3b84a9a049526900afb049f6c $</author>
+    <field name='TOPIC_MSG_RECEIVED' fqn='org.osgi.service.enocean.EnOceanEvent.TOPIC_MSG_RECEIVED' qn='EnOceanEvent.TOPIC_MSG_RECEIVED' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"org/osgi/service/enocean/EnOceanEvent/MESSAGE_RECEIVED"'>
+   <lead>
+Main topic for all OSGi dispatched EnOcean messages, imported or
+ exported.
+   </lead>
+   <description>
+Main topic for all OSGi dispatched EnOcean messages, imported or
+ exported.
+   </description>
+
+     </field>
+    <field name='TOPIC_RPC_BROADCAST' fqn='org.osgi.service.enocean.EnOceanEvent.TOPIC_RPC_BROADCAST' qn='EnOceanEvent.TOPIC_RPC_BROADCAST' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"org/osgi/service/enocean/EnOceanEvent/RPC_BROADCAST"'>
+   <lead>
+Main topic for all OSGi broadcast EnOcean RPCs, imported or exported.
+   </lead>
+   <description>
+Main topic for all OSGi broadcast EnOcean RPCs, imported or exported.
+   </description>
+
+     </field>
+    <field name='PROPERTY_MESSAGE' fqn='org.osgi.service.enocean.EnOceanEvent.PROPERTY_MESSAGE' qn='EnOceanEvent.PROPERTY_MESSAGE' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.message"'>
+   <lead>
+Property key for the {@link EnOceanMessage} object embedded in an event.
+   </lead>
+   <description>
+Property key for the {@link EnOceanMessage} object embedded in an event.
+   </description>
+
+     </field>
+    <field name='PROPERTY_EXPORTED' fqn='org.osgi.service.enocean.EnOceanEvent.PROPERTY_EXPORTED' qn='EnOceanEvent.PROPERTY_EXPORTED' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.message.is_exported"'>
+   <lead>
+Property key used to tell apart messages that are exported or imported.
+   </lead>
+   <description>
+Property key used to tell apart messages that are exported or imported.
+   </description>
+
+     </field>
+    <field name='PROPERTY_RPC' fqn='org.osgi.service.enocean.EnOceanEvent.PROPERTY_RPC' qn='EnOceanEvent.PROPERTY_RPC' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.rpc"'>
+   <lead>
+Property key for the {@link EnOceanRPC} object embedded in an event.
+   </lead>
+   <description>
+Property key for the {@link EnOceanRPC} object embedded in an event.
+   </description>
+
+     </field>
+  </class>
+  <class name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException' qn='EnOceanException' package='org.osgi.service.enocean' typeParam='' modifiers='public class' superclass='Exception' kind='CLASS'>
+   <lead>
+This class contains code and definitions necessary to support common EnOcean
+ exceptions.
+   </lead>
+   <description>
+This class contains code and definitions necessary to support common EnOcean
+ exceptions. This class is mostly used with low-level, gateway-interacting
+ code : EnOceanHost.
+   </description>
+<author>@author $Id: f806ce3e31437f85f08236068cb50cf23cb1430e $</author>
+    <method name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException.EnOceanException' qn='EnOceanException.EnOceanException(String)' package='org.osgi.service.enocean' typeArgs='' modifiers='public' signature='(java.lang.String)' flatSignature='(String)' isConstructor='true'>
+   <lead>
+Constructor for EnOceanException
+   </lead>
+   <description>
+Constructor for EnOceanException
+   </description>
+
+<param name='errordesc'>exception error description</param>
+
+
+
+
+    <parameter name='errordesc' dimension='' typeName='String' fqn='java.lang.String' varargs='false'/>
+     </method>
+    <method name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException.EnOceanException' qn='EnOceanException.EnOceanException(int,String)' package='org.osgi.service.enocean' typeArgs='' modifiers='public' signature='(int,java.lang.String)' flatSignature='(int,String)' isConstructor='true'>
+   <lead>
+Constructor for EnOceanException
+   </lead>
+   <description>
+Constructor for EnOceanException
+   </description>
+
+<param name='errorCode'>the error code.</param>
+<param name='errorDesc'>the description.</param>
+
+
+
+
+    <parameter name='errorCode' dimension='' typeName='int' fqn='int' varargs='false'/>
+    <parameter name='errorDesc' dimension='' typeName='String' fqn='java.lang.String' varargs='false'/>
+     </method>
+    <method name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException.EnOceanException' qn='EnOceanException.EnOceanException(int)' package='org.osgi.service.enocean' typeArgs='' modifiers='public' signature='(int)' flatSignature='(int)' isConstructor='true'>
+   <lead>
+Constructor for EnOceanException
+   </lead>
+   <description>
+Constructor for EnOceanException
+   </description>
+
+<param name='errorCode'>An error code.</param>
+
+
+
+
+    <parameter name='errorCode' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+    <method name='errorCode' fqn='org.osgi.service.enocean.EnOceanException.errorCode' qn='EnOceanException.errorCode()' package='org.osgi.service.enocean' modifiers='public' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Constructor for EnOceanException
+   </lead>
+   <description>
+Constructor for EnOceanException
+   </description>
+
+
+<return>An EnOcean error code, defined by the EnOcean Forum working
+         committee or an EnOcean vendor.</return>
+
+
+
+     </method>
+    <field name='SUCCESS' fqn='org.osgi.service.enocean.EnOceanException.SUCCESS' qn='EnOceanException.SUCCESS' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='0'>
+   <lead>
+SUCCESS status code.
+   </lead>
+   <description>
+SUCCESS status code.
+   </description>
+
+     </field>
+    <field name='ESP_UNEXPECTED_FAILURE' fqn='org.osgi.service.enocean.EnOceanException.ESP_UNEXPECTED_FAILURE' qn='EnOceanException.ESP_UNEXPECTED_FAILURE' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='1'>
+   <lead>
+Unexpected failure.
+   </lead>
+   <description>
+Unexpected failure.
+   </description>
+
+     </field>
+    <field name='ESP_RET_NOT_SUPPORTED' fqn='org.osgi.service.enocean.EnOceanException.ESP_RET_NOT_SUPPORTED' qn='EnOceanException.ESP_RET_NOT_SUPPORTED' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='2'>
+   <lead>
+Operation is not supported by the target device.
+   </lead>
+   <description>
+Operation is not supported by the target device.
+   </description>
+
+     </field>
+    <field name='ESP_RET_WRONG_PARAM' fqn='org.osgi.service.enocean.EnOceanException.ESP_RET_WRONG_PARAM' qn='EnOceanException.ESP_RET_WRONG_PARAM' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='3'>
+   <lead>
+One of the parameters was badly specified or missing.
+   </lead>
+   <description>
+One of the parameters was badly specified or missing.
+   </description>
+
+     </field>
+    <field name='ESP_RET_OPERATION_DENIED' fqn='org.osgi.service.enocean.EnOceanException.ESP_RET_OPERATION_DENIED' qn='EnOceanException.ESP_RET_OPERATION_DENIED' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='4'>
+   <lead>
+The operation was denied.
+   </lead>
+   <description>
+The operation was denied.
+   </description>
+
+     </field>
+    <field name='INVALID_TELEGRAM' fqn='org.osgi.service.enocean.EnOceanException.INVALID_TELEGRAM' qn='EnOceanException.INVALID_TELEGRAM' package='org.osgi.service.enocean' modifiers='public static final' typeName='short' qualifiedTypeName='short' dimension='' constantValue='240'>
+   <lead>
+The message was invalid.
+   </lead>
+   <description>
+The message was invalid.
+   </description>
+
+     </field>
+  </class>
+  <class name='EnOceanHandler' fqn='org.osgi.service.enocean.EnOceanHandler' qn='EnOceanHandler' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+The interface used to get callback answers from a RPC or a Message.
+   </lead>
+   <description>
+The interface used to get callback answers from a RPC or a Message.
+   </description>
+<author>@author $Id: 3ff47778ab7106209d4707a4c2de52d965b9c639 $</author>
+    <method name='notifyResponse' fqn='org.osgi.service.enocean.EnOceanHandler.notifyResponse' qn='EnOceanHandler.notifyResponse(EnOceanRPC,byte[])' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(org.osgi.service.enocean.EnOceanRPC,byte[])' flatSignature='(EnOceanRPC,byte[])'>
+   <lead>
+Notifies of the answer to a RPC.
+   </lead>
+   <description>
+Notifies of the answer to a RPC.
+   </description>
+
+<param name='original'>the original {@link EnOceanRPC} that originated this
+        answer.</param>
+<param name='payload'>the payload of the response; may be deserialized to an
+        {@link EnOceanRPC} object.</param>
+
+
+
+
+    <parameter name='original' dimension='' typeName='EnOceanRPC' fqn='org.osgi.service.enocean.EnOceanRPC' varargs='false'/>
+    <parameter name='payload' dimension='[]' typeName='byte[]' fqn='byte[]' varargs='false'/>
+     </method>
+  </class>
+  <class name='EnOceanHost' fqn='org.osgi.service.enocean.EnOceanHost' qn='EnOceanHost' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This interface represents an EnOcean Host, a device that offers EnOcean
+ networking features.
+   </lead>
+   <description>
+This interface represents an EnOcean Host, a device that offers EnOcean
+ networking features.
+   </description>
+<author>@author $Id: 5cb1aa6ca0176904c533f012cc59342ecce3f05d $</author>
+    <method name='reset' fqn='org.osgi.service.enocean.EnOceanHost.reset' qn='EnOceanHost.reset()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Reset the EnOcean Host (cf.
+   </lead>
+   <description>
+Reset the EnOcean Host (cf. ESP3 command 0x02: CO_WR_RESET)
+   </description>
+
+
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='appVersion' fqn='org.osgi.service.enocean.EnOceanHost.appVersion' qn='EnOceanHost.appVersion()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Returns the chip's application version info (cf.
+   </lead>
+   <description>
+Returns the chip's application version info (cf. ESP3 command 0x03:
+ CO_RD_VERSION)
+   </description>
+
+
+<return>a String object containing the application version info.</return>
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='apiVersion' fqn='org.osgi.service.enocean.EnOceanHost.apiVersion' qn='EnOceanHost.apiVersion()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Returns the chip's API version info (cf.
+   </lead>
+   <description>
+Returns the chip's API version info (cf. ESP3 command 0x03:
+ CO_RD_VERSION)
+   </description>
+
+
+<return>a String object containing the API version info.</return>
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='getBaseID' fqn='org.osgi.service.enocean.EnOceanHost.getBaseID' qn='EnOceanHost.getBaseID()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Gets the BASE_ID of the chip, if set (cf.
+   </lead>
+   <description>
+Gets the BASE_ID of the chip, if set (cf. ESP3 command 0x08:
+ CO_RD_IDBASE)
+   </description>
+
+
+<return>the BASE_ID of the device as defined in EnOcean specification</return>
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='setBaseID' fqn='org.osgi.service.enocean.EnOceanHost.setBaseID' qn='EnOceanHost.setBaseID(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Sets the base ID of the device, may be used up to 10 times (cf.
+   </lead>
+   <description>
+Sets the base ID of the device, may be used up to 10 times (cf. ESP3
+ command 0x07: CO_WR_IDBASE)
+   </description>
+
+<param name='baseID'>to be set.</param>
+
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+    <parameter name='baseID' dimension='' typeName='int' fqn='int' varargs='false'/>
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='setRepeaterLevel' fqn='org.osgi.service.enocean.EnOceanHost.setRepeaterLevel' qn='EnOceanHost.setRepeaterLevel(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Sets the repeater level on the host (cf.
+   </lead>
+   <description>
+Sets the repeater level on the host (cf. ESP3 command 0x09:
+ CO_WR_REPEATER)
+   </description>
+
+<param name='level'>one of the Repeater Level constants as defined above.</param>
+
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+    <parameter name='level' dimension='' typeName='int' fqn='int' varargs='false'/>
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='getRepeaterLevel' fqn='org.osgi.service.enocean.EnOceanHost.getRepeaterLevel' qn='EnOceanHost.getRepeaterLevel()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Gets the current repeater level of the host (cf.
+   </lead>
+   <description>
+Gets the current repeater level of the host (cf. ESP3 command 0x0A:
+ CO_RD_REPEATER)
+   </description>
+
+
+<return>one of the Repeater Level constants as defined above.</return>
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <method name='getChipId' fqn='org.osgi.service.enocean.EnOceanHost.getChipId' qn='EnOceanHost.getChipId(String)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='(java.lang.String)' flatSignature='(String)'>
+   <lead>
+Retrieves the CHIP_ID associated with the given servicePID, if existing
+ on this chip.
+   </lead>
+   <description>
+Retrieves the CHIP_ID associated with the given servicePID, if existing
+ on this chip.
+   </description>
+
+<param name='servicePID'/>
+
+<return>the associated CHIP_ID of the exported device.</return>
+
+<throws name='EnOceanException'>if any problem occurs.</throws>
+
+
+    <parameter name='servicePID' dimension='' typeName='String' fqn='java.lang.String' varargs='false'/>
+<exception name='EnOceanException' fqn='org.osgi.service.enocean.EnOceanException'/>
+     </method>
+    <field name='HOST_ID' fqn='org.osgi.service.enocean.EnOceanHost.HOST_ID' qn='EnOceanHost.HOST_ID' package='org.osgi.service.enocean' modifiers='public static final' typeName='Object' qualifiedTypeName='java.lang.Object' dimension=''>
+   <lead>
+The unique ID for this Host: this matches the CHIP_ID of the EnOcean
+ Gateway Chip it embodies.
+   </lead>
+   <description>
+The unique ID for this Host: this matches the CHIP_ID of the EnOcean
+ Gateway Chip it embodies.
+   </description>
+
+     </field>
+    <field name='REPEATER_LEVEL_OFF' fqn='org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_OFF' qn='EnOceanHost.REPEATER_LEVEL_OFF' package='org.osgi.service.enocean' modifiers='public static final' typeName='int' qualifiedTypeName='int' dimension='' constantValue='0'>
+   <lead>
+repeater level to disable repeating; this is the default.
+   </lead>
+   <description>
+repeater level to disable repeating; this is the default.
+   </description>
+
+     </field>
+    <field name='REPEATER_LEVEL_ONE' fqn='org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_ONE' qn='EnOceanHost.REPEATER_LEVEL_ONE' package='org.osgi.service.enocean' modifiers='public static final' typeName='int' qualifiedTypeName='int' dimension='' constantValue='1'>
+   <lead>
+repeater level to repeat every telegram at most once.
+   </lead>
+   <description>
+repeater level to repeat every telegram at most once.
+   </description>
+
+     </field>
+    <field name='REPEATER_LEVEL_TWO' fqn='org.osgi.service.enocean.EnOceanHost.REPEATER_LEVEL_TWO' qn='EnOceanHost.REPEATER_LEVEL_TWO' package='org.osgi.service.enocean' modifiers='public static final' typeName='int' qualifiedTypeName='int' dimension='' constantValue='2'>
+   <lead>
+repeater level to repeat every telegram at most twice.
+   </lead>
+   <description>
+repeater level to repeat every telegram at most twice.
+   </description>
+
+     </field>
+  </class>
+  <class name='EnOceanMessage' fqn='org.osgi.service.enocean.EnOceanMessage' qn='EnOceanMessage' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+Holds the necessary methods to interact with an EnOcean message.
+   </lead>
+   <description>
+Holds the necessary methods to interact with an EnOcean message.
+   </description>
+<author>@author $Id: edebb9eb99eb95b718b7e0c3a5685f720613639a $</author>
+    <method name='getRorg' fqn='org.osgi.service.enocean.EnOceanMessage.getRorg' qn='EnOceanMessage.getRorg()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message's RORG</return>
+
+
+
+     </method>
+    <method name='getFunc' fqn='org.osgi.service.enocean.EnOceanMessage.getFunc' qn='EnOceanMessage.getFunc()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message's FUNC</return>
+
+
+
+     </method>
+    <method name='getType' fqn='org.osgi.service.enocean.EnOceanMessage.getType' qn='EnOceanMessage.getType()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message's TYPE</return>
+
+
+
+     </method>
+    <method name='getSenderId' fqn='org.osgi.service.enocean.EnOceanMessage.getSenderId' qn='EnOceanMessage.getSenderId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message's Sender ID</return>
+
+
+
+     </method>
+    <method name='getDestinationId' fqn='org.osgi.service.enocean.EnOceanMessage.getDestinationId' qn='EnOceanMessage.getDestinationId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message's destination ID, or -1</return>
+
+
+
+     </method>
+    <method name='getBytes' fqn='org.osgi.service.enocean.EnOceanMessage.getBytes' qn='EnOceanMessage.getBytes()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Gets the bytes corresponding to the whole message, including the CRC.
+   </lead>
+   <description>
+Gets the bytes corresponding to the whole message, including the CRC. The
+ generated byte[] array may be sent to an EnOcean gateway and is conform
+ to EnOcean Radio Protocol.
+   </description>
+
+
+<return>The serialized byte list corresponding to the binary message.</return>
+
+
+
+     </method>
+    <method name='getPayloadBytes' fqn='org.osgi.service.enocean.EnOceanMessage.getPayloadBytes' qn='EnOceanMessage.getPayloadBytes()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Returns the payload bytes of this message.
+   </lead>
+   <description>
+Returns the payload bytes of this message.
+   </description>
+
+
+<return>corresponding value.</return>
+
+
+
+     </method>
+    <method name='getStatus' fqn='org.osgi.service.enocean.EnOceanMessage.getStatus' qn='EnOceanMessage.getStatus()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Gets the current EnOcean status of the Message.
+   </lead>
+   <description>
+Gets the current EnOcean status of the Message. The 'status' byte is
+ actually a bitfield that mainly holds repeater information, teach-in
+ status, and more or less information depending on the radiotelegram type.
+   </description>
+
+
+<return>the current EnOcean status of this message.</return>
+
+
+
+     </method>
+    <method name='getSubTelNum' fqn='org.osgi.service.enocean.EnOceanMessage.getSubTelNum' qn='EnOceanMessage.getSubTelNum()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Returns the number of subtelegrams (usually 1) this Message carries.
+   </lead>
+   <description>
+Returns the number of subtelegrams (usually 1) this Message carries.
+   </description>
+
+
+<return>The number of subtelegrams in the case of multiframe messages.</return>
+
+
+
+     </method>
+    <method name='getDbm' fqn='org.osgi.service.enocean.EnOceanMessage.getDbm' qn='EnOceanMessage.getDbm()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Returns the average RSSI on all the received subtelegrams, including
+ redundant ones.
+   </lead>
+   <description>
+Returns the average RSSI on all the received subtelegrams, including
+ redundant ones.
+   </description>
+
+
+<return>The average RSSI perceived.</return>
+
+
+
+     </method>
+    <method name='getSecurityLevelFormat' fqn='org.osgi.service.enocean.EnOceanMessage.getSecurityLevelFormat' qn='EnOceanMessage.getSecurityLevelFormat()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Returns the security level of this message, as specified in the 'Security
+ of EnOcean Radio Networks' draft, section 4.2.1.3.
+   </lead>
+   <description>
+Returns the security level of this message, as specified in the 'Security
+ of EnOcean Radio Networks' draft, section 4.2.1.3.
+   </description>
+
+
+<return>The security level format.</return>
+
+
+
+     </method>
+  </class>
+  <class name='EnOceanRPC' fqn='org.osgi.service.enocean.EnOceanRPC' qn='EnOceanRPC' package='org.osgi.service.enocean' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+A very basic interface for RPCs.
+   </lead>
+   <description>
+A very basic interface for RPCs.
+   </description>
+<author>@author $Id: e47e610ccf4c561b40580e50a9636b8d344bc436 $</author>
+    <method name='getManufacturerId' fqn='org.osgi.service.enocean.EnOceanRPC.getManufacturerId' qn='EnOceanRPC.getManufacturerId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Gets the manufacturerID for this RPC.
+   </lead>
+   <description>
+Gets the manufacturerID for this RPC.
+   </description>
+
+
+<return>manufacturer id.</return>
+
+
+
+     </method>
+    <method name='getFunctionId' fqn='org.osgi.service.enocean.EnOceanRPC.getFunctionId' qn='EnOceanRPC.getFunctionId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Gets the functionID for this RPC.
+   </lead>
+   <description>
+Gets the functionID for this RPC.
+   </description>
+
+
+<return>function id.</return>
+
+
+
+     </method>
+    <method name='getPayload' fqn='org.osgi.service.enocean.EnOceanRPC.getPayload' qn='EnOceanRPC.getPayload()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Gets the current payload of the RPC.
+   </lead>
+   <description>
+Gets the current payload of the RPC.
+   </description>
+
+
+<return>the payload, in bytes, of this RPC.</return>
+
+
+
+     </method>
+    <method name='getSenderId' fqn='org.osgi.service.enocean.EnOceanRPC.getSenderId' qn='EnOceanRPC.getSenderId()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Sets the RPC's senderID.
+   </lead>
+   <description>
+Sets the RPC's senderID.
+ 
+ This member has to belong to {@link EnOceanRPC} interface, for the object
+ may be sent as a standalone using EventAdmin for instance.
+   </description>
+
+
+<return>sender id.</return>
+
+
+
+     </method>
+    <method name='setSenderId' fqn='org.osgi.service.enocean.EnOceanRPC.setSenderId' qn='EnOceanRPC.setSenderId(int)' package='org.osgi.service.enocean' modifiers='public abstract' typeName='void' qualifiedTypeName='void' typeArgs='' dimension='' signature='(int)' flatSignature='(int)'>
+   <lead>
+Sets the RPC's senderID.
+   </lead>
+   <description>
+Sets the RPC's senderID.
+   </description>
+
+<param name='chipId'/>
+
+
+
+
+    <parameter name='chipId' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+    <method name='getName' fqn='org.osgi.service.enocean.EnOceanRPC.getName' qn='EnOceanRPC.getName()' package='org.osgi.service.enocean' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Get a friendly name for the RPC
+   </lead>
+   <description>
+Get a friendly name for the RPC
+   </description>
+
+
+<return>the name.</return>
+
+
+
+     </method>
+    <field name='MANUFACTURER_ID' fqn='org.osgi.service.enocean.EnOceanRPC.MANUFACTURER_ID' qn='EnOceanRPC.MANUFACTURER_ID' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.rpc.manufacturer_id"'>
+   <lead>
+The Manufacturer ID property string, used in EventAdmin RPC broadcasting.
+   </lead>
+   <description>
+The Manufacturer ID property string, used in EventAdmin RPC broadcasting.
+   </description>
+
+     </field>
+    <field name='FUNCTION_ID' fqn='org.osgi.service.enocean.EnOceanRPC.FUNCTION_ID' qn='EnOceanRPC.FUNCTION_ID' package='org.osgi.service.enocean' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.rpc.function_id"'>
+   <lead>
+The Function ID property string, used in EventAdmin RPC broadcasting.
+   </lead>
+   <description>
+The Function ID property string, used in EventAdmin RPC broadcasting.
+   </description>
+
+     </field>
+  </class>
+  </package>
+  <package name='org.osgi.service.enocean.descriptions' fqn='org.osgi.service.enocean.descriptions' qn='org.osgi.service.enocean.descriptions'>
+<org.osgi.annotation.versioning.Version><value>1.0</value>
+</org.osgi.annotation.versioning.Version>
+   <lead>
+EnOcean Descriptions Package Version 1.0.
+   </lead>
+   <description>
+EnOcean Descriptions Package Version 1.0.
+ 
+ <p>
+ Bundles wishing to use this package must list the package in the
+ Import-Package header of the bundle's manifest. This package has two types of
+ users: the consumers that use the API in this package and the providers that
+ implement the API in this package.
+ 
+ </p><p>
+ Example import for consumers using the API in this package:
+ </p><p>
+ {@code  Import-Package: org.osgi.service.enocean.descriptions; version="[1.0,2.0)"}
+ </p><p>
+ Example import for providers implementing the API in this package:
+ </p><p>
+ {@code  Import-Package: org.osgi.service.enocean.descriptions; version="[1.0,1.1)"}</p>
+   </description>
+<author>@author $Id: 65f2dc790b5f62f5a8175aaa51d73960bf6c7b03 $</author>
+  <class name='EnOceanChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription' qn='EnOceanChannelDescription' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+Public and registered description interface for a channel.
+   </lead>
+   <description>
+Public and registered description interface for a channel. Encompasses all
+ the possible subtypes for a channel.
+   </description>
+<version>@version 1.0</version><author>@author $Id: 61b21375118e33bd04c3ede4f4d8374e927ce076 $</author>
+    <method name='getType' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.getType' qn='EnOceanChannelDescription.getType()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+Retrieves the type of the channel.
+   </lead>
+   <description>
+Retrieves the type of the channel.
+   </description>
+
+
+<return>one of the above-described types.</return>
+
+
+
+     </method>
+    <method name='serialize' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.serialize' qn='EnOceanChannelDescription.serialize(Object)' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='(java.lang.Object)' flatSignature='(Object)'>
+   <lead>
+Tries to serialize the channel into a series of bytes.
+   </lead>
+   <description>
+Tries to serialize the channel into a series of bytes.
+   </description>
+
+<param name='obj'>the value of the channel.</param>
+
+<return>the right-aligned value, in raw bytes, of the channel.</return>
+
+<throws name='IllegalArgumentException'></throws>
+
+
+    <parameter name='obj' dimension='' typeName='Object' fqn='java.lang.Object' varargs='false'/>
+     </method>
+    <method name='deserialize' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.deserialize' qn='EnOceanChannelDescription.deserialize(byte[])' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='Object' qualifiedTypeName='java.lang.Object' typeArgs='' dimension='' signature='(byte[])' flatSignature='(byte[])'>
+   <lead>
+Tries to deserialize a series of bytes into a documented value object
+ (raw bytes, Double or {@link EnOceanChannelEnumValue}.
+   </lead>
+   <description>
+Tries to deserialize a series of bytes into a documented value object
+ (raw bytes, Double or {@link EnOceanChannelEnumValue}. Of course this
+ method will be specialized for each {@link EnOceanChannelDescription}
+ subinterface, depending on the type of this channel.
+   </description>
+
+<param name='bytes'>the right-aligned raw bytes.</param>
+
+<return>a value object.</return>
+
+<throws name='IllegalArgumentException'></throws>
+
+
+    <parameter name='bytes' dimension='[]' typeName='byte[]' fqn='byte[]' varargs='false'/>
+     </method>
+    <field name='CHANNEL_ID' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.CHANNEL_ID' qn='EnOceanChannelDescription.CHANNEL_ID' package='org.osgi.service.enocean.descriptions' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.channel.description.channel_id"'>
+   <lead>
+The unique ID of this EnOceanChannelDescription object.
+   </lead>
+   <description>
+The unique ID of this EnOceanChannelDescription object.
+   </description>
+
+     </field>
+    <field name='TYPE_RAW' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_RAW' qn='EnOceanChannelDescription.TYPE_RAW' package='org.osgi.service.enocean.descriptions' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.channel.description.raw"'>
+   <lead>
+A RAW channel is only made of bytes.
+   </lead>
+   <description>
+A RAW channel is only made of bytes.
+   </description>
+
+     </field>
+    <field name='TYPE_DATA' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_DATA' qn='EnOceanChannelDescription.TYPE_DATA' package='org.osgi.service.enocean.descriptions' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.channel.description.data"'>
+   <lead>
+A DATA channel maps itself to a {@link Double} value representing a
+ physical measure.
+   </lead>
+   <description>
+A DATA channel maps itself to a {@link Double} value representing a
+ physical measure.
+   </description>
+
+     </field>
+    <field name='TYPE_FLAG' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_FLAG' qn='EnOceanChannelDescription.TYPE_FLAG' package='org.osgi.service.enocean.descriptions' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.channel.description.flag"'>
+   <lead>
+A FLAG channel maps itself to a {@link Boolean} value.
+   </lead>
+   <description>
+A FLAG channel maps itself to a {@link Boolean} value.
+   </description>
+
+     </field>
+    <field name='TYPE_ENUM' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription.TYPE_ENUM' qn='EnOceanChannelDescription.TYPE_ENUM' package='org.osgi.service.enocean.descriptions' modifiers='public static final' typeName='String' qualifiedTypeName='java.lang.String' dimension='' constantValue='"enocean.channel.description.enum"'>
+   <lead>
+An ENUM channel maps itself to one between a list of discrete
+ {@link EnOceanChannelEnumValue} "value objects".
+   </lead>
+   <description>
+An ENUM channel maps itself to one between a list of discrete
+ {@link EnOceanChannelEnumValue} "value objects".
+   </description>
+
+     </field>
+  </class>
+  <class name='EnOceanChannelDescriptionSet' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet' qn='EnOceanChannelDescriptionSet' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This interface represents an EnOcean Channel Description Set.
+   </lead>
+   <description>
+This interface represents an EnOcean Channel Description Set.
+ {@link EnOceanChannelDescriptionSet} is registered as an OSGi Service.
+ Provides a method to retrieve the {@link EnOceanChannelDescription} objects
+ it documents.
+   </description>
+<version>@version 1.0</version><author>@author $Id: 676fb12abd7e2f03d3ab5e448636877e08be32c8 $</author>
+    <method name='getChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet.getChannelDescription' qn='EnOceanChannelDescriptionSet.getChannelDescription(String)' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='EnOceanChannelDescription' qualifiedTypeName='org.osgi.service.enocean.descriptions.EnOceanChannelDescription' typeArgs='' dimension='' signature='(java.lang.String)' flatSignature='(String)'>
+   <lead>
+Retrieves a {@link EnOceanChannelDescription} object according to its
+ identifier.
+   </lead>
+   <description>
+Retrieves a {@link EnOceanChannelDescription} object according to its
+ identifier.
+   </description>
+
+<param name='channelId'>the unique string identifier of the description object.</param>
+
+<return>The corresponding {@link EnOceanChannelDescription} object, or
+         null.</return>
+
+<throws name='IllegalArgumentException'>if the supplied String is invalid, null,
+         or other reason.</throws>
+
+
+    <parameter name='channelId' dimension='' typeName='String' fqn='java.lang.String' varargs='false'/>
+     </method>
+  </class>
+  <class name='EnOceanChannelEnumValue' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue' qn='EnOceanChannelEnumValue' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This transitional interface is used to define all the possible values taken
+ by an enumerated channel.
+   </lead>
+   <description>
+This transitional interface is used to define all the possible values taken
+ by an enumerated channel.
+   </description>
+<version>@version 1.0</version><author>@author $Id: d5ab88f8ad73dc7163776e6882f48ba67e827a3a $</author>
+    <method name='getStart' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getStart' qn='EnOceanChannelEnumValue.getStart()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The start value of the enumeration.
+   </lead>
+   <description>
+The start value of the enumeration.
+   </description>
+
+
+<return>the start value.</return>
+
+
+
+     </method>
+    <method name='getStop' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getStop' qn='EnOceanChannelEnumValue.getStop()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The stop value of the enumeration.
+   </lead>
+   <description>
+The stop value of the enumeration.
+   </description>
+
+
+<return>the stop value.</return>
+
+
+
+     </method>
+    <method name='getDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue.getDescription' qn='EnOceanChannelEnumValue.getDescription()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+A non-mandatory description of what this enumerated value is about.
+   </lead>
+   <description>
+A non-mandatory description of what this enumerated value is about.
+   </description>
+
+
+<return>the description of this channel.</return>
+
+
+
+     </method>
+  </class>
+  <class name='EnOceanDataChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription' qn='EnOceanDataChannelDescription' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' superclass='EnOceanChannelDescription' interface='yes' kind='INTERFACE'>
+   <lead>
+Subinterface of {@link EnOceanChannelDescription} that describes physical
+ measuring channels.
+   </lead>
+   <description>
+Subinterface of {@link EnOceanChannelDescription} that describes physical
+ measuring channels.
+   </description>
+<version>@version 1.0</version><author>@author $Id: 8a6c7012f5e58e07e1b5b339d18f2bff8301b14e $</author>
+<implements name='EnOceanChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription' qn='EnOceanChannelDescription' package='org.osgi.service.enocean.descriptions' local='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription'/>
+    <method name='getDomainStart' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getDomainStart' qn='EnOceanDataChannelDescription.getDomainStart()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The start of the raw input range for this channel.
+   </lead>
+   <description>
+The start of the raw input range for this channel.
+   </description>
+
+
+<return>the domain start.</return>
+
+
+
+     </method>
+    <method name='getDomainStop' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getDomainStop' qn='EnOceanDataChannelDescription.getDomainStop()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='int' qualifiedTypeName='int' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The end of the raw input range for this channel.
+   </lead>
+   <description>
+The end of the raw input range for this channel.
+   </description>
+
+
+<return>the domain stop.</return>
+
+
+
+     </method>
+    <method name='getRangeStart' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getRangeStart' qn='EnOceanDataChannelDescription.getRangeStart()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='double' qualifiedTypeName='double' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The scale start at which this channel will be mapped to (-20,0°C for
+ instance)
+   </lead>
+   <description>
+The scale start at which this channel will be mapped to (-20,0°C for
+ instance)
+   </description>
+
+
+<return>the range start.</return>
+
+
+
+     </method>
+    <method name='getRangeStop' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getRangeStop' qn='EnOceanDataChannelDescription.getRangeStop()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='double' qualifiedTypeName='double' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The scale stop at which this channel will be mapped to (+30,0°C for
+ instance)
+   </lead>
+   <description>
+The scale stop at which this channel will be mapped to (+30,0°C for
+ instance)
+   </description>
+
+
+<return>the range stop.</return>
+
+
+
+     </method>
+    <method name='getUnit' fqn='org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription.getUnit' qn='EnOceanDataChannelDescription.getUnit()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead>
+The non-mandatory physical unit description of this channel.
+   </lead>
+   <description>
+The non-mandatory physical unit description of this channel.
+   </description>
+
+
+<return>the unit as a String</return>
+
+
+
+     </method>
+  </class>
+  <class name='EnOceanEnumChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription' qn='EnOceanEnumChannelDescription' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' superclass='EnOceanChannelDescription' interface='yes' kind='INTERFACE'>
+   <lead>
+Subinterface of {@link EnOceanChannelDescription} that describes enumerated
+ channels.
+   </lead>
+   <description>
+Subinterface of {@link EnOceanChannelDescription} that describes enumerated
+ channels.
+   </description>
+<version>@version 1.0</version><author>@author $Id: 07437df42131bfcd8970e4cb65f1820e3ae7f96d $</author>
+<implements name='EnOceanChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription' qn='EnOceanChannelDescription' package='org.osgi.service.enocean.descriptions' local='org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription'/>
+    <method name='getPossibleValues' fqn='org.osgi.service.enocean.descriptions.EnOceanEnumChannelDescription.getPossibleValues' qn='EnOceanEnumChannelDescription.getPossibleValues()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='EnOceanChannelEnumValue[]' qualifiedTypeName='org.osgi.service.enocean.descriptions.EnOceanChannelEnumValue[]' typeArgs='' dimension='[]' signature='()' flatSignature='()'>
+   <lead>
+Gets all the possible value for this channel.
+   </lead>
+   <description>
+Gets all the possible value for this channel.
+   </description>
+
+
+<return>corresponding value(s).</return>
+
+
+
+     </method>
+  </class>
+  <class name='EnOceanFlagChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanFlagChannelDescription' qn='EnOceanFlagChannelDescription' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' superclass='EnOceanChannelDescription' interface='yes' kind='INTERFACE'>
+   <lead>
+Subinterface of {@link EnOceanChannelDescription} that describes boolean
+ channels.
+   </lead>
+   <description>
+Subinterface of {@link EnOceanChannelDescription} that describes boolean
+ channels.
+   </description>
+<version>@version 1.0</version><author>@author $Id: d27cc4004ca538cb72cfb511ebbb5d0097e971a8 $</author>
+<implements name='EnOceanChannelDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanChannelDescription' qn='EnOceanChannelDescription' package='org.osgi.service.enocean.descriptions' local='org.osgi.service.enocean.descriptions.EnOceanFlagChannelDescription'/>
+  </class>
+  <class name='EnOceanMessageDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescription' qn='EnOceanMessageDescription' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This interface represents an EnOcean Message Description.
+   </lead>
+   <description>
+This interface represents an EnOcean Message Description.
+   </description>
+<version>@version 1.0</version><author>@author $Id: f8e52957543f409488553e92eba505124fcd1824 $</author>
+    <method name='serialize' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescription.serialize' qn='EnOceanMessageDescription.serialize(EnOceanChannel[])' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='byte[]' qualifiedTypeName='byte[]' typeArgs='' dimension='[]' signature='(org.osgi.service.enocean.EnOceanChannel[])' flatSignature='(EnOceanChannel[])'>
+   <lead>
+Serializes a series of {@link EnOceanChannel} objects into the
+ corresponding byte[] sequence.
+   </lead>
+   <description>
+Serializes a series of {@link EnOceanChannel} objects into the
+ corresponding byte[] sequence.
+   </description>
+
+<param name='channels'>to be serialized.</param>
+
+<return>serialized value.</return>
+
+<throws name='IllegalArgumentException'>if the given channels is null.</throws>
+
+
+    <parameter name='channels' dimension='[]' typeName='EnOceanChannel[]' fqn='org.osgi.service.enocean.EnOceanChannel[]' varargs='false'/>
+     </method>
+    <method name='deserialize' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescription.deserialize' qn='EnOceanMessageDescription.deserialize(byte[])' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='EnOceanChannel[]' qualifiedTypeName='org.osgi.service.enocean.EnOceanChannel[]' typeArgs='' dimension='[]' signature='(byte[])' flatSignature='(byte[])'>
+   <lead>
+Deserializes an array of bytes into the EnOceanChannels available to the
+ payload, if possible.
+   </lead>
+   <description>
+Deserializes an array of bytes into the EnOceanChannels available to the
+ payload, if possible.
+   </description>
+
+<param name='bytes'>to be deserialized.</param>
+
+<return>deserialized value.</return>
+
+<throws name='IllegalArgumentException'>if the actual instance type of the
+         message is not compatible with the bytes it is fed with (RORG to
+         begin with).</throws>
+
+
+    <parameter name='bytes' dimension='[]' typeName='byte[]' fqn='byte[]' varargs='false'/>
+     </method>
+    <method name='getMessageDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescription.getMessageDescription' qn='EnOceanMessageDescription.getMessageDescription()' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='String' qualifiedTypeName='java.lang.String' typeArgs='' dimension='' signature='()' flatSignature='()'>
+   <lead/>
+   <description/>
+
+
+<return>the message description containing the RORG, (and the FUNC, and
+         the TYPE if available), as well as, the EEP's "title" (e.g. for
+         F60201: Rocker Switch, 2 Rocker; Light and Blind Control -
+         Application Style 1).</return>
+
+
+
+     </method>
+  </class>
+  <class name='EnOceanMessageDescriptionSet' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet' qn='EnOceanMessageDescriptionSet' package='org.osgi.service.enocean.descriptions' typeParam='' modifiers='public abstract' interface='yes' kind='INTERFACE'>
+   <lead>
+This interface represents an EnOcean Message Description Set.
+   </lead>
+   <description>
+This interface represents an EnOcean Message Description Set.
+ {@link EnOceanMessageDescriptionSet} is registered as an OSGi Service.
+ Provides method to retrieve the {@link EnOceanMessageDescription} objects it
+ documents.
+   </description>
+<version>@version 1.0</version><author>@author $Id: ade7bf37fc79f8466e235e3620ca4a8762f1fff8 $</author>
+    <method name='getMessageDescription' fqn='org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet.getMessageDescription' qn='EnOceanMessageDescriptionSet.getMessageDescription(int,int,int,int)' package='org.osgi.service.enocean.descriptions' modifiers='public abstract' typeName='EnOceanMessageDescription' qualifiedTypeName='org.osgi.service.enocean.descriptions.EnOceanMessageDescription' typeArgs='' dimension='' signature='(int,int,int,int)' flatSignature='(int,int,int,int)'>
+   <lead>
+Retrieves a {@link EnOceanMessageDescription} object according to its
+ identifiers.
+   </lead>
+   <description>
+Retrieves a {@link EnOceanMessageDescription} object according to its
+ identifiers. See EnOcean Equipment Profile Specification for more
+ details.
+   </description>
+
+<param name='rorg'>the radio telegram type of the message.</param>
+<param name='func'>The func subtype of this message.</param>
+<param name='type'>The type subselector.</param>
+<param name='extra'>Some extra information; some
+        {@link EnOceanMessageDescription} objects need an additional
+        specifier. If not needed, has to be set to -1.</param>
+
+<return>The {@link EnOceanMessageDescription} object looked for, or null.</return>
+
+<throws name='IllegalArgumentException'>if there was an error related to the
+         input arguments.</throws>
+
+
+    <parameter name='rorg' dimension='' typeName='int' fqn='int' varargs='false'/>
+    <parameter name='func' dimension='' typeName='int' fqn='int' varargs='false'/>
+    <parameter name='type' dimension='' typeName='int' fqn='int' varargs='false'/>
+    <parameter name='extra' dimension='' typeName='int' fqn='int' varargs='false'/>
+     </method>
+  </class>
+  </package>
+</top>

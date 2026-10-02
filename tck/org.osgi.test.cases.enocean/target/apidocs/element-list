@@ -1,0 +1,9 @@
+org.osgi.test.cases.enocean
+org.osgi.test.cases.enocean.channels
+org.osgi.test.cases.enocean.descriptions
+org.osgi.test.cases.enocean.descriptions.enumvalues
+org.osgi.test.cases.enocean.devices
+org.osgi.test.cases.enocean.messages
+org.osgi.test.cases.enocean.rpc
+org.osgi.test.cases.enocean.serial
+org.osgi.test.cases.enocean.utils

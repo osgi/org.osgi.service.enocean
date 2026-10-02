@@ -1,0 +1,15 @@
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/EnOceanBundleActivator.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/EnOceanBaseDriver.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/EnOceanPacketListener.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/esp/EspPacket.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/impl/EnOceanDeviceImpl.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/impl/EnOceanHostImpl.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/impl/EnOceanHostTestImpl.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/radio/Message.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/radio/Message4BS.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/radio/MessageRPS.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/basedriver/radio/MessageSYS_EX.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/utils/EnOceanHostImplException.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/utils/Logger.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/utils/Utils.java
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java/org/osgi/impl/service/enocean/utils/teststep/TestStepForEnOceanImpl.java

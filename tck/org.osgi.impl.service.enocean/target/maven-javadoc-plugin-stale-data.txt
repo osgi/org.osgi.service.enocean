@@ -1,0 +1,103 @@
+@options
+@packages
+-classpath
+'/home/stbischof/.m2/repository/org/osgi/org.osgi.framework/1.10.0/org.osgi.framework-1.10.0.jar:/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/api/target/org.osgi.service.enocean-1.0.2-SNAPSHOT.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.annotation.versioning/1.1.2/org.osgi.annotation.versioning-1.1.2.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.annotation.bundle/2.0.0/org.osgi.annotation.bundle-2.0.0.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.service.cm/1.6.1/org.osgi.service.cm-1.6.1.jar:/home/stbischof/.m2/repository/org/osgi/osgi.annotation/8.0.1/osgi.annotation-8.0.1.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.namespace.implementation/1.0.0/org.osgi.namespace.implementation-1.0.0.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.service.device/1.1.1/org.osgi.service.device-1.1.1.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.service.event/1.4.1/org.osgi.service.event-1.4.1.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.util.tracker/1.5.4/org.osgi.util.tracker-1.5.4.jar:/home/stbischof/.m2/repository/org/osgi/tck/org.osgi.test.support/0.0.1-SNAPSHOT/org.osgi.test.support-0.0.1-SNAPSHOT.jar:/home/stbischof/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar:/home/stbischof/.m2/repository/net/bytebuddy/byte-buddy/1.12.21/byte-buddy-1.12.21.jar:/home/stbischof/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar:/home/stbischof/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/stbischof/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar:/home/stbischof/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar:/home/stbischof/.m2/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.junit/4.13.2_1/org.apache.servicemix.bundles.junit-4.13.2_1.jar:/home/stbischof/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/stbischof/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.service.log/1.5.0/org.osgi.service.log-1.5.0.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.util.converter/1.0.9/org.osgi.util.converter-1.0.9.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.util.function/1.0.0/org.osgi.util.function-1.0.0.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.test.common/1.3.0/org.osgi.test.common-1.3.0.jar:/home/stbischof/.m2/repository/org/osgi/org.osgi.test.junit5/1.3.0/org.osgi.test.junit5-1.3.0.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+8
+-sourcepath
+'/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java:/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 1980 <a href="https://www.eclipse.org/">Eclipse Foundation</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'org.osgi.impl.service.enocean 1.0.2-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/javadoc-bundle-options'
+-linkoffline
+'https://projects.eclipse.org/projects/technology.osgi/org.osgi.service.enocean.reactor/org.osgi.service.enocean/apidocs' '/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/api/target/apidocs'
+-notimestamp
+-tag
+"Immutable:t:Immutable"
+-tag
+"ThreadSafe:t:ThreadSafe"
+-tag
+"NotThreadSafe:t:NotThreadSafe"
+-tag
+"GuardedBy:mf:Guarded By:"
+-tag
+"security:m:Required Permissions"
+-tag
+"noimplement:t:Consumers of this API must not implement this interface"
+-tag
+"implNote:a:Implementation Note:"
+-use
+-version
+-windowtitle
+'org.osgi.impl.service.enocean 1.0.2-SNAPSHOT API'
+org.osgi.impl.service.enocean
+org.osgi.impl.service.enocean.basedriver
+org.osgi.impl.service.enocean.basedriver.esp
+org.osgi.impl.service.enocean.basedriver.impl
+org.osgi.impl.service.enocean.basedriver.radio
+org.osgi.impl.service.enocean.utils
+org.osgi.impl.service.enocean.utils.teststep
+/home/stbischof/.m2/repository/org/osgi/org.osgi.framework/1.10.0/org.osgi.framework-1.10.0.jar = 1607377478000
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/api/target/org.osgi.service.enocean-1.0.2-SNAPSHOT.jar = 1790090808678
+/home/stbischof/.m2/repository/org/osgi/org.osgi.annotation.versioning/1.1.2/org.osgi.annotation.versioning-1.1.2.jar = 1634136809000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.annotation.bundle/2.0.0/org.osgi.annotation.bundle-2.0.0.jar = 1644360733000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.service.cm/1.6.1/org.osgi.service.cm-1.6.1.jar = 1634136831000
+/home/stbischof/.m2/repository/org/osgi/osgi.annotation/8.0.1/osgi.annotation-8.0.1.jar = 1634136808000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.namespace.implementation/1.0.0/org.osgi.namespace.implementation-1.0.0.jar = 1439903963000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.service.device/1.1.1/org.osgi.service.device-1.1.1.jar = 1634136842000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.service.event/1.4.1/org.osgi.service.event-1.4.1.jar = 1634136846000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.util.tracker/1.5.4/org.osgi.util.tracker-1.5.4.jar = 1634136906000
+/home/stbischof/.m2/repository/org/osgi/tck/org.osgi.test.support/0.0.1-SNAPSHOT/org.osgi.test.support-0.0.1-SNAPSHOT.jar = 1788283843000
+/home/stbischof/.m2/repository/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar = 1673907067000
+/home/stbischof/.m2/repository/net/bytebuddy/byte-buddy/1.12.21/byte-buddy-1.12.21.jar = 1672872452000
+/home/stbischof/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.12.2/junit-jupiter-api-5.12.2.jar = 1744380656000
+/home/stbischof/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar = 1688646332000
+/home/stbischof/.m2/repository/org/junit/platform/junit-platform-commons/1.12.2/junit-platform-commons-1.12.2.jar = 1744380628000
+/home/stbischof/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.12.2/junit-jupiter-params-5.12.2.jar = 1744380651000
+/home/stbischof/.m2/repository/org/apache/servicemix/bundles/org.apache.servicemix.bundles.junit/4.13.2_1/org.apache.servicemix.bundles.junit-4.13.2_1.jar = 1614582078000
+/home/stbischof/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar = 1341868082000
+/home/stbischof/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar = 1624798415000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.service.log/1.5.0/org.osgi.service.log-1.5.0.jar = 1607402552000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.util.converter/1.0.9/org.osgi.util.converter-1.0.9.jar = 1644360816000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.util.function/1.0.0/org.osgi.util.function-1.0.0.jar = 1439906642000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.test.common/1.3.0/org.osgi.test.common-1.3.0.jar = 1711364775000
+/home/stbischof/.m2/repository/org/osgi/org.osgi.test.junit5/1.3.0/org.osgi.test.junit5-1.3.0.jar = 1711364793000
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/src/main/java = 1790012122707
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/generated-sources/annotations = 1790090880141
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/element-list = 1790093188195
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/constant-values.html = 1790093188426
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/serialized-form.html = 1790093188447
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/overview-tree.html = 1790093188645
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/index.html = 1790093188653
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/allclasses-index.html = 1790093188701
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/allpackages-index.html = 1790093188705
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/module-search-index.js = 1790093188706
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/package-search-index.js = 1790093188706
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/type-search-index.js = 1790093188707
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/member-search-index.js = 1790093188715
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/tag-search-index.js = 1790093188717
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/index-all.html = 1790093188798
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/search.html = 1790093188803
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/overview-summary.html = 1790093188806
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/help-doc.html = 1790093188850
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/stylesheet.css = 1790093188861
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/script.js = 1790093188868
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/copy.svg = 1790093188870
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/link.svg = 1790093188872
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/search.js = 1790093188877
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/search-page.js = 1790093188879
+/home/stbischof/git/OSGI_MIGRATE/osgi_target/org.osgi.service.enocean/tck/org.osgi.impl.service.enocean/target/apidocs/javadoc.sh = 1790090893761
