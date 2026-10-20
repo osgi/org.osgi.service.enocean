@@ -18,9 +18,12 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
 import org.osgi.service.enocean.EnOceanEvent;
 import org.osgi.service.enocean.EnOceanRPC;
 import org.osgi.service.event.Event;
@@ -47,6 +50,7 @@ public class EnOceanBroadcastRPCTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testExportBroadcastRPC() throws Exception {
 
 	/*
@@ -67,9 +71,7 @@ public class EnOceanBroadcastRPCTestCase extends AbstractEnOceanTestCase {
 		.execute(
 			GET_EVENT,
 			"An event has been sent by the test to the base driver. Just hit [enter] to continue, and get this event.");
-	assertNotNull(
-		"The base driver didn't receive the expected event (i.e., here, it didn't received any event at all).",
-		executionResult);
+	assertThat(executionResult).as("The base driver didn't receive the expected event (i.e., here, it didn't received any event at all).").isNotNull();
 
 	byte[] data = Utils.hex2Bytes(executionResult);
 	tlog("executionResult: " + executionResult);
@@ -81,8 +83,7 @@ public class EnOceanBroadcastRPCTestCase extends AbstractEnOceanTestCase {
 		+ ", Utils.bytesToHex(msg.getRPC().getPayload()): "
 		+ Utils.bytesToHex(msg.getRPC().getPayload()));
 
-	assertEquals("EnOcean radio message and forged message mismatch",
-		Utils.bytesToHex(rpc.getPayload()), Utils.bytesToHex(msg.getRPC().getPayload()));
+	assertThat(Utils.bytesToHex(msg.getRPC().getPayload())).as("EnOcean radio message and forged message mismatch").isEqualTo(Utils.bytesToHex(rpc.getPayload()));
     }
 
 }

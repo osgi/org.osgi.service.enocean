@@ -18,6 +18,11 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.within;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.enocean.EnOceanChannel;
 import org.osgi.service.enocean.EnOceanDevice;
@@ -59,6 +64,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws InterruptedException
      */
+    @Test
     public void testInterfaceExceptions() throws InterruptedException {
 	// Request the registration of an EnOceanMessageDescriptionSet
 	// containing an EnOceanMessageDescription.
@@ -66,15 +72,15 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 		"Request the registration of an EnOceanMessageDescriptionSet containing an EnOceanMessageDescription.");
 	String result = enOceanMessageDescriptionSets.waitForService();
 	tlog("testInterfaceExceptions(), enOceanMessageDescriptionSets.waitForService() returned: " + result);
-	assertNotNull("Timeout reached.", result);
+	assertThat(result).as("Timeout reached.").isNotNull();
 	// testInterfaceExceptions(),
 	// enOceanMessageDescriptionSets.waitForService() returned:
 	// SERVICE_ADDED
 
-	ServiceReference<EnOceanMessageDescriptionSet> sr1 = getContext()
+	ServiceReference<EnOceanMessageDescriptionSet> sr1 = context
 			.getServiceReference(EnOceanMessageDescriptionSet.class);
 	tlog("testInterfaceExceptions(), EnOceanMessageDescriptionSet sr: " + sr1);
-	EnOceanMessageDescriptionSet mdSet = getContext().getService(sr1);
+	EnOceanMessageDescriptionSet mdSet = context.getService(sr1);
 	EnOceanMessageDescription msgDescription = mdSet.getMessageDescription(Fixtures.RORG,
 		Fixtures.FUNC, Fixtures.TYPE_1, -1);
 	tlog("testInterfaceExceptions(), enOceanMessageDescription: " + msgDescription);
@@ -104,12 +110,12 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 		"Request the registration of an EnOceanChannelDescriptionSet containing an EnOceanChannelDescription_CID.");
 	result = enOceanChannelDescriptionSets.waitForService();
 	tlog("testInterfaceExceptions(), enOceanChannelDescriptionSets.waitForService() returned: " + result);
-	assertNotNull("Timeout reached.", result);
+	assertThat(result).as("Timeout reached.").isNotNull();
 
-	ServiceReference<EnOceanChannelDescriptionSet> sr2 = getContext()
+	ServiceReference<EnOceanChannelDescriptionSet> sr2 = context
 			.getServiceReference(EnOceanChannelDescriptionSet.class);
 	tlog("testInterfaceExceptions(), EnOceanChannelDescriptionSet sr2: " + sr2);
-	EnOceanChannelDescriptionSet cdSet = getContext().getService(sr2);
+	EnOceanChannelDescriptionSet cdSet = context.getService(sr2);
 	EnOceanChannelDescription channelDescription = cdSet.getChannelDescription(Fixtures.CHANNEL_ID);
 	tlog("testInterfaceExceptions(), enOceanChannelDescription: " + channelDescription);
 
@@ -186,9 +192,9 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	}
 
 	tlog("Unget service with service reference: " + sr1);
-	getContext().ungetService(sr1);
+	context.ungetService(sr1);
 	tlog("Unget service with service reference: " + sr2);
-	getContext().ungetService(sr2);
+	context.ungetService(sr2);
     }
 
     /**
@@ -196,6 +202,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws InterruptedException
      */
+    @Test
     public void testRPC() throws InterruptedException {
 	tlog("testRPC(), Ask the user to plug the EnOcean USB dongle.");
 	/* Plug the EnOcean USB dongle */
@@ -209,7 +216,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	String wfs = devices.waitForService();
 	tlog("testRPC(), waitForService returned: " + wfs);
 	// [bnd] testRPC(), waitForService returned: SERVICE_ADDED
-	assertNotNull("Timeout reached.", wfs);
+	assertThat(wfs).as("Timeout reached.").isNotNull();
 
 	ServiceReference<EnOceanDevice> sr = devices.getServiceReference();
 	tlog("testRPC(), sr: " + sr);
@@ -217,7 +224,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	// {org.osgi.service.enocean.EnOceanDevice}={enocean.device.chip_id=305419896,
 	// enocean.device.profile.rorg=165, DEVICE_CATEGORY=EnOcean,
 	// service.id=40, service.bundleid=7, service.scope=singleton}
-	EnOceanDevice device = getContext().getService(sr);
+	EnOceanDevice device = context.getService(sr);
 	tlog("testRPC(), device: " + device);
 	// [bnd] testRPC(), device:
 	// org.osgi.impl.service.enocean.basedriver.impl.EnOceanDeviceImpl@49f92de5
@@ -233,7 +240,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	}
 
 	tlog("Unget service with service reference: " + sr);
-	getContext().ungetService(sr);
+	context.ungetService(sr);
     }
 
     /**
@@ -243,6 +250,7 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws InterruptedException
      */
+    @Test
     public void testUseOfDescriptions() throws InterruptedException {
 	/*
 	 * Here, the message profile is A5-02-01. In a real context, the base
@@ -262,25 +270,25 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	// testUseOfDescriptions(),
 	// enOceanMessageDescriptionSets.waitForService() returned:
 	// SERVICE_ADDED
-	assertNotNull("Timeout reached.", result);
+	assertThat(result).as("Timeout reached.").isNotNull();
 
-	ServiceReference<EnOceanMessageDescriptionSet> sr1 = getContext()
+	ServiceReference<EnOceanMessageDescriptionSet> sr1 = context
 			.getServiceReference(EnOceanMessageDescriptionSet.class);
 	tlog("testUseOfDescriptions(), EnOceanMessageDescriptionSet sr: " + sr1);
-	EnOceanMessageDescriptionSet mdSet = getContext().getService(sr1);
+	EnOceanMessageDescriptionSet mdSet = context.getService(sr1);
 	EnOceanMessageDescription msgDescription = mdSet.getMessageDescription(Fixtures.RORG,
 		Fixtures.FUNC, Fixtures.TYPE_1, -1);
 	tlog("testUseOfDescriptions(), enOceanMessageDescription: " + msgDescription);
 
-	assertNotNull("enOceanMessageDescription must not be null.", msgDescription);
+	assertThat(msgDescription).as("enOceanMessageDescription must not be null.").isNotNull();
 
 	EnOceanChannel[] channels = msgDescription.deserialize(new MessageExample1(
 		Fixtures.FLOATVALUE).getPayloadBytes());
-	assertEquals("2 channels are expected here.", 2, channels.length);
+	assertThat(channels.length).as("2 channels are expected here.").isEqualTo(2);
 
 	EnOceanChannel channel = channels[0];
 	String channelId = channel.getChannelId();
-	assertEquals("Fixtures.CHANNEL_ID is expected here.", Fixtures.CHANNEL_ID, channelId);
+	assertThat(channelId).as("Fixtures.CHANNEL_ID is expected here.").isEqualTo(Fixtures.CHANNEL_ID);
 
 	// Use teststep to add an EnOceanChannelDescriptionSet
 	// Request the registration of an EnOceanChannelDescriptionSet
@@ -291,28 +299,26 @@ public class EnOceanBasicTestCase extends AbstractEnOceanTestCase {
 	tlog("testUseOfDescriptions(), enOceanChannelDescriptionSets.waitForService()");
 	result = enOceanChannelDescriptionSets.waitForService();
 	tlog("testUseOfDescriptions(), enOceanChannelDescriptionSets.waitForService() returned: " + result);
-	assertNotNull("Timeout reached.", result);
+	assertThat(result).as("Timeout reached.").isNotNull();
 
-	ServiceReference<EnOceanChannelDescriptionSet> sr2 = getContext()
+	ServiceReference<EnOceanChannelDescriptionSet> sr2 = context
 			.getServiceReference(EnOceanChannelDescriptionSet.class);
 	tlog("testUseOfDescriptions(), EnOceanChannelDescriptionSet sr2: " + sr2);
-	EnOceanChannelDescriptionSet cdSet = getContext().getService(sr2);
+	EnOceanChannelDescriptionSet cdSet = context.getService(sr2);
 	EnOceanChannelDescription channelDescription = cdSet.getChannelDescription(Fixtures.CHANNEL_ID);
 	tlog("testUseOfDescriptions(), enOceanChannelDescription: " + channelDescription);
 
-	assertEquals("Fixtures.CHANNEL_TYPE is expected here.", Fixtures.CHANNEL_TYPE,
-		channelDescription.getType());
+	assertThat(channelDescription.getType()).as("Fixtures.CHANNEL_TYPE is expected here.").isEqualTo(Fixtures.CHANNEL_TYPE);
 
 	EnOceanDataChannelDescription dataChannelDescription = (EnOceanDataChannelDescription) channelDescription;
 	// It's a float because it's a DATA channel
 	Float deserializedValue = (Float) dataChannelDescription.deserialize(channel.getRawValue());
-	assertEquals("Fixtures.FLOATVALUE is expected here.", Fixtures.FLOATVALUE,
-		deserializedValue.floatValue(), 0.1);
+	assertThat((double) deserializedValue.floatValue()).as("Fixtures.FLOATVALUE is expected here.").isCloseTo(Fixtures.FLOATVALUE, within(0.1));
 
 	tlog("Unget service with service reference: " + sr1);
-	getContext().ungetService(sr1);
+	context.ungetService(sr1);
 	tlog("Unget service with service reference: " + sr2);
-	getContext().ungetService(sr2);
+	context.ungetService(sr2);
     }
 
 }

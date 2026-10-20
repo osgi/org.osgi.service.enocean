@@ -26,8 +26,8 @@ package org.osgi.test.cases.enocean;
  * 
  * @author $Id$
  */
-public class SignatureTestCase extends org.osgi.test.support.signature.SignatureTestCase {
+public class SignatureTestCase extends org.osgi.tck.signature.AbstractSignatureTest {
 
-	// see org.osgi.test.support.signature.SignatureTestCase.
+	// see org.osgi.tck.signature.AbstractSignatureTest.
 
 }

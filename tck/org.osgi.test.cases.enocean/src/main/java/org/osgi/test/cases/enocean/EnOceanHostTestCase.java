@@ -18,6 +18,10 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.enocean.EnOceanHost;
@@ -39,12 +43,13 @@ public class EnOceanHostTestCase extends AbstractEnOceanTestCase {
      * Test that at least one EnOceanHost service is registered when an
      * implementation of the EnOcean specification is running.
      */
+    @Test
     public void testEnOceanHostServiceAvailability() {
 	try {
 	    super.testStepProxy.execute(PLUG_DONGLE, "Plug the EnOcean USB dongle.");
-		ServiceReference< ? >[] srs = getContext()
+		ServiceReference< ? >[] srs = context
 				.getAllServiceReferences(EnOceanHost.class.getName(), null);
-	    assertNotNull("Test failed: no EnOceanHost service has been found in the OSGi service registry.", srs);
+	    assertThat(srs).as("Test failed: no EnOceanHost service has been found in the OSGi service registry.").isNotNull();
 	    tlog("The test found " + srs.length + " EnOceanHost service(s).");
 	} catch (InvalidSyntaxException e) {
 	    e.printStackTrace();

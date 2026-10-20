@@ -18,6 +18,9 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.service.enocean.EnOceanChannel;
 import org.osgi.service.enocean.EnOceanDevice;
 import org.osgi.service.enocean.EnOceanEvent;
@@ -48,37 +51,37 @@ public class EventTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws InterruptedException
      */
+    @Test
     public void testEventNotification() throws InterruptedException {
 	/* Insert a device */
 	super.testStepProxy.execute(MSG_EXAMPLE_1A, "Insert an a5_02_01 device.");
 
 	/* First get a reference towards the device */
 	String lastServiceEvent = devices.waitForService();
-	assertNotNull("Timeout reached.", lastServiceEvent);
-	assertEquals("did not have service addition", ServiceListener.SERVICE_ADDED, lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
+	assertThat(lastServiceEvent).as("did not have service addition").isEqualTo(ServiceListener.SERVICE_ADDED);
 
 	/* Make the inserted device send a message */
 	super.testStepProxy.execute(MSG_EXAMPLE_1B, "Make the inserted device send a message.");
 
 	Event event = events.waitForEvent();
-	assertNotNull("Timeout reached (no event has been received).", event);
+	assertThat(event).as("Timeout reached (no event has been received).").isNotNull();
 
-	assertEquals("topic mismatch", EnOceanEvent.TOPIC_MSG_RECEIVED, event.getTopic());
-	assertEquals("senderId mismatch", Fixtures.STR_HOST_ID, event.getProperty(EnOceanDevice.CHIP_ID));
-	assertEquals("rorg mismatch", Fixtures.STR_RORG, event.getProperty(EnOceanDevice.RORG));
-	assertEquals("func mismatch", Fixtures.STR_FUNC, event.getProperty(EnOceanDevice.FUNC));
-	assertEquals("type mismatch", Fixtures.STR_TYPE_1, event.getProperty(EnOceanDevice.TYPE));
+	assertThat(event.getTopic()).as("topic mismatch").isEqualTo(EnOceanEvent.TOPIC_MSG_RECEIVED);
+	assertThat(event.getProperty(EnOceanDevice.CHIP_ID)).as("senderId mismatch").isEqualTo(Fixtures.STR_HOST_ID);
+	assertThat(event.getProperty(EnOceanDevice.RORG)).as("rorg mismatch").isEqualTo(Fixtures.STR_RORG);
+	assertThat(event.getProperty(EnOceanDevice.FUNC)).as("func mismatch").isEqualTo(Fixtures.STR_FUNC);
+	assertThat(event.getProperty(EnOceanDevice.TYPE)).as("type mismatch").isEqualTo(Fixtures.STR_TYPE_1);
 
 	EnOceanMessage msg = (EnOceanMessage) event.getProperty(EnOceanEvent.PROPERTY_MESSAGE);
-	assertNotNull("Msg must not be null.", msg);
+	assertThat(msg).as("Msg must not be null.").isNotNull();
 	EnOceanMessageDescription description = new EnOceanMessageDescription2();
 	EnOceanChannel[] channels = description.deserialize(msg.getPayloadBytes());
 
-	assertNotNull("The EnOcean message description is expected to contain channels.", channels);
-	assertNotNull("The EnOcean message description is expected to contain at least one channel.", channels[0]);
-	assertNotNull("The EnOcean message description is expected to contain at least one channel with a raw value.",
-		channels[0].getRawValue());
-	assertEquals("The raw value is expected to be 1 byte long.", 1, channels[0].getRawValue().length);
+	assertThat(channels).as("The EnOcean message description is expected to contain channels.").isNotNull();
+	assertThat(channels[0]).as("The EnOcean message description is expected to contain at least one channel.").isNotNull();
+	assertThat(channels[0].getRawValue()).as("The EnOcean message description is expected to contain at least one channel with a raw value.").isNotNull();
+	assertThat(channels[0].getRawValue().length).as("The raw value is expected to be 1 byte long.").isOne();
     }
 
 }

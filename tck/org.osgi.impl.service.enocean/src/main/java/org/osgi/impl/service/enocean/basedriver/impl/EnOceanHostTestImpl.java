@@ -34,7 +34,7 @@ import org.osgi.service.enocean.descriptions.EnOceanChannelDescriptionSet;
 import org.osgi.service.enocean.descriptions.EnOceanDataChannelDescription;
 import org.osgi.service.enocean.descriptions.EnOceanMessageDescription;
 import org.osgi.service.enocean.descriptions.EnOceanMessageDescriptionSet;
-import org.osgi.test.support.step.TestStep;
+import org.osgi.tck.step.TestStep;
 
 /**
  * EnOcean host implementation fir test purpose.
