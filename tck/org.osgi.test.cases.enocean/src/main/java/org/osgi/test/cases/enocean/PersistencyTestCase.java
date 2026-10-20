@@ -18,14 +18,16 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.enocean.EnOceanDevice;
 import org.osgi.service.enocean.EnOceanHost;
 import org.osgi.test.cases.enocean.utils.Fixtures;
-import org.osgi.test.support.OSGiTestCaseProperties;
-import org.osgi.test.support.sleep.Sleep;
+
 
 /**
  * This class contains:
@@ -44,40 +46,40 @@ public class PersistencyTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testDeviceExportPersistency() throws Exception {
 		ServiceRegistration<EnOceanDevice> sReg = Fixtures
-				.registerDevice(getContext());
+				.registerDevice(context);
 
 	/* Get CHIP_ID attributed by the driver from the given service PID. */
-		ServiceReference<EnOceanHost> hostRef = getContext()
+		ServiceReference<EnOceanHost> hostRef = context
 				.getServiceReference(EnOceanHost.class);
-	EnOceanHost defaultHost = getContext().getService(hostRef);
+	EnOceanHost defaultHost = context.getService(hostRef);
 	int originalChipId = defaultHost.getChipId(Fixtures.DEVICE_PID);
 
 	Bundle baseDriver = hostRef.getBundle();
-	assertNotNull("baseDriver must not be null.", baseDriver);
+	assertThat(baseDriver).as("baseDriver must not be null.").isNotNull();
 
 	baseDriver.stop();
-	Sleep.sleep(1000 * OSGiTestCaseProperties.getScaling());
+	Thread.sleep(1000 * OSGiTestCaseProperties.getScaling());
 
-	hostRef = getContext().getServiceReference(EnOceanHost.class);
-	assertNull("hostRef must be null, once the base driver is stopped.", hostRef);
+	hostRef = context.getServiceReference(EnOceanHost.class);
+	assertThat(hostRef).as("hostRef must be null, once the base driver is stopped.").isNull();
 
 	baseDriver.start();
 	String lastServiceEvent = enOceanHostServiceListener.waitForService();
-	assertNotNull("Timeout reached.", lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
 
-	hostRef = getContext().getServiceReference(EnOceanHost.class);
-	assertNotNull("One EnOceanHost service must be registered (hostRef must not be null), once the base driver is started.",
-		hostRef);
-	defaultHost = getContext().getService(hostRef);
+	hostRef = context.getServiceReference(EnOceanHost.class);
+	assertThat(hostRef).as("One EnOceanHost service must be registered (hostRef must not be null), once the base driver is started.").isNotNull();
+	defaultHost = context.getService(hostRef);
 	int newChipId = defaultHost.getChipId(Fixtures.DEVICE_PID);
 
-	assertEquals("Original, and new chip ids mismatch.", originalChipId, newChipId);
+	assertThat(newChipId).as("Original, and new chip ids mismatch.").isEqualTo(originalChipId);
 
 	sReg.unregister();
 	tlog("Unget service with service reference: " + hostRef);
-	getContext().ungetService(hostRef);
+	context.ungetService(hostRef);
     }
 
 }

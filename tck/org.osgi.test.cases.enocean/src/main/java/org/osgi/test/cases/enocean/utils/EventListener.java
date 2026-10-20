@@ -28,7 +28,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventHandler;
-import org.osgi.test.support.OSGiTestCaseProperties;
+import org.osgi.test.cases.enocean.OSGiTestCaseProperties;
 
 /**
  * @author $Id$

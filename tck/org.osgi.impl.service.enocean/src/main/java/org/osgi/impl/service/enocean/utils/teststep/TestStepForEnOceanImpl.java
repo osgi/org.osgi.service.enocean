@@ -20,7 +20,7 @@ package org.osgi.impl.service.enocean.utils.teststep;
 
 import org.osgi.impl.service.enocean.utils.Logger;
 import org.osgi.impl.service.enocean.utils.Utils;
-import org.osgi.test.support.step.TestStep;
+import org.osgi.tck.step.TestStep;
 
 /**
  * An implementation of the test step based on RI simulator. This implementation

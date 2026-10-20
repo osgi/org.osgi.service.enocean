@@ -18,6 +18,10 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.enocean.EnOceanDevice;
 import org.osgi.test.cases.enocean.utils.Fixtures;
@@ -38,6 +42,7 @@ public class RegistrationTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testAutoDeviceRegistration() throws Exception {
 
 	/* Insert a device */
@@ -46,12 +51,12 @@ public class RegistrationTestCase extends AbstractEnOceanTestCase {
 	// Device added
 	String lastServiceEvent = devices.waitForService();
 	tlog("Device added, lastServiceEvent: " + lastServiceEvent);
-	assertNotNull("Timeout reached.", lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
 
 	// Device modified (profile)
 	lastServiceEvent = devices.waitForService();
 	tlog("Device modified (profile), lastServiceEvent: " + lastServiceEvent);
-	assertNotNull("Timeout reached.", lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
 
 	/*
 	 * NOTE: The service should have been modified AFTER insertion,
@@ -65,17 +70,16 @@ public class RegistrationTestCase extends AbstractEnOceanTestCase {
 	 * Verify that the device has been registered with the correct service
 	 * properties
 	 */
-	assertEquals("category mismatch", EnOceanDevice.DEVICE_CATEGORY,
-		ref.getProperty(org.osgi.service.device.Constants.DEVICE_CATEGORY));
-	assertEquals("RORG mismatch; 0xA5 is expected.", Fixtures.STR_RORG, ref.getProperty(EnOceanDevice.RORG));
-	assertEquals("FUNC mismatch; 0x02 is expected.", Fixtures.STR_FUNC, ref.getProperty(EnOceanDevice.FUNC));
-	assertEquals("TYPE mismatch; 0x01 is expected.", Fixtures.STR_TYPE_1, ref.getProperty(EnOceanDevice.TYPE));
+	assertThat(ref.getProperty(org.osgi.service.device.Constants.DEVICE_CATEGORY)).as("category mismatch").isEqualTo(EnOceanDevice.DEVICE_CATEGORY);
+	assertThat(ref.getProperty(EnOceanDevice.RORG)).as("RORG mismatch; 0xA5 is expected.").isEqualTo(Fixtures.STR_RORG);
+	assertThat(ref.getProperty(EnOceanDevice.FUNC)).as("FUNC mismatch; 0x02 is expected.").isEqualTo(Fixtures.STR_FUNC);
+	assertThat(ref.getProperty(EnOceanDevice.TYPE)).as("TYPE mismatch; 0x01 is expected.").isEqualTo(Fixtures.STR_TYPE_1);
 
 	// Check the existency of the following properties, and that they are
 	// String, and defined.
 	Object chipId = ref.getProperty(EnOceanDevice.CHIP_ID);
-	assertNotNull("The service representing the just registered device should have the EnOceanDevice.CHIP_ID: "
-		+ EnOceanDevice.CHIP_ID + " property.", chipId);
+	assertThat(chipId).as("The service representing the just registered device should have the EnOceanDevice.CHIP_ID: "
+		+ EnOceanDevice.CHIP_ID + " property.").isNotNull();
 	if (! (chipId instanceof String)) {
 	    fail("The EnOceanDevice.CHIP_ID is expected to be a String.");
 	}
@@ -85,8 +89,8 @@ public class RegistrationTestCase extends AbstractEnOceanTestCase {
 	}
 
 	Object manuf = ref.getProperty(EnOceanDevice.MANUFACTURER);
-	assertNotNull("The service representing the just registered device should have the EnOceanDevice.MANUFACTURER: " 
-		+ EnOceanDevice.MANUFACTURER + " property.", manuf);
+	assertThat(manuf).as("The service representing the just registered device should have the EnOceanDevice.MANUFACTURER: " 
+		+ EnOceanDevice.MANUFACTURER + " property.").isNotNull();
 	if (! (manuf instanceof String)) {
 	    fail("The EnOceanDevice.MANUFACTURER is expected to be a String.");
 	}

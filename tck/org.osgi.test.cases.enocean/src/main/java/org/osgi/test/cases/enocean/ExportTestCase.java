@@ -18,9 +18,12 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
@@ -53,22 +56,23 @@ public class ExportTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testDeviceExport() throws Exception {
 
 		ServiceRegistration<EnOceanDevice> sReg = Fixtures
-				.registerDevice(getContext());
+				.registerDevice(context);
 
 	/* Wait for the proper and full registration */
 	String lastServiceEvent = devices.waitForService();
-	assertNotNull("Timeout reached.", lastServiceEvent);
-	assertEquals("did not have service addition", ServiceListener.SERVICE_ADDED, lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
+	assertThat(lastServiceEvent).as("did not have service addition").isEqualTo(ServiceListener.SERVICE_ADDED);
 
 	/* Get CHIP_ID attributed by the driver from the given service PID. */
-	ServiceReference<EnOceanHost> hostRef = getContext()
+	ServiceReference<EnOceanHost> hostRef = context
 			.getServiceReference(EnOceanHost.class);
-	EnOceanHost defaultHost = getContext().getService(hostRef);
+	EnOceanHost defaultHost = context.getService(hostRef);
 	int dynamicChipId = defaultHost.getChipId(Fixtures.DEVICE_PID);
-	assertTrue("The created CHIP_ID for an exported device was not created", dynamicChipId != -1);
+	assertThat(dynamicChipId != -1).as("The created CHIP_ID for an exported device was not created").isTrue();
 
 	/*
 	 * Now that we have gotten the device registered and all, we are able to
@@ -89,8 +93,7 @@ public class ExportTestCase extends AbstractEnOceanTestCase {
 
 	String executionResult = super.testStepProxy.execute(GET_EVENT,
 		"An event has been sent by the test to the base driver. Just hit [enter] to continue, and get this event.");
-	assertNotNull("The base driver didn't received the expected event (i.e., here, it didn't received any event at all).",
-		executionResult);
+	assertThat(executionResult).as("The base driver didn't received the expected event (i.e., here, it didn't received any event at all).").isNotNull();
 
 	byte[] data = Utils.hex2Bytes(executionResult);
 	EspPacket pkt = new EspPacket(data);
@@ -98,14 +101,12 @@ public class ExportTestCase extends AbstractEnOceanTestCase {
 	tlog("Utils.bytesToHex(msg.getBytes()): " + Utils.bytesToHex(msg.getBytes())
 		+ ", Utils.bytesToHex(pkt.getData().getBytes()): " + Utils.bytesToHex(pkt.getData().getBytes()));
 
-	assertEquals("EnOcean radio message and forged message mismatch",
-		Utils.bytesToHex(msg.getBytes()),
-		Utils.bytesToHex(pkt.getData().getBytes()));
+	assertThat(Utils.bytesToHex(pkt.getData().getBytes())).as("EnOcean radio message and forged message mismatch").isEqualTo(Utils.bytesToHex(msg.getBytes()));
 
 	// Needed not to mess with further tests
 	sReg.unregister();
 	tlog("Unget service with service reference: " + hostRef);
-	getContext().ungetService(hostRef);
+	context.ungetService(hostRef);
     }
 
 }

@@ -18,6 +18,9 @@
 
 package org.osgi.test.cases.enocean;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.Test;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.enocean.EnOceanDevice;
 import org.osgi.test.cases.enocean.messages.MessageExample2;
@@ -44,6 +47,7 @@ public class ManualRegistrationTestCase extends AbstractEnOceanTestCase {
      * 
      * @throws Exception
      */
+    @Test
     public void testManualDeviceRegistration() throws Exception {
 
 	/* Insert a device */
@@ -56,31 +60,31 @@ public class ManualRegistrationTestCase extends AbstractEnOceanTestCase {
 
 	String lastServiceEvent = devices.waitForService();
 	tlog("lastServiceEvent: " + lastServiceEvent);
-	assertNotNull("Timeout reached.", lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
 	ServiceReference<EnOceanDevice> ref = devices.getServiceReference();
 	tlog("ref: " + ref);
 
-	assertEquals("Event mismatch", ServiceListener.SERVICE_ADDED, lastServiceEvent);
-	assertEquals("CHIP_ID mismatch", Fixtures.STR_HOST_ID_2, ref.getProperty(EnOceanDevice.CHIP_ID));
-	assertEquals("RORG mismatch", Fixtures.STR_RORG_RPS, ref.getProperty(EnOceanDevice.RORG));
-	assertNull("ref.getProperty(EnOceanDevice.FUNC) must not be null.", ref.getProperty(EnOceanDevice.FUNC));
+	assertThat(lastServiceEvent).as("Event mismatch").isEqualTo(ServiceListener.SERVICE_ADDED);
+	assertThat(ref.getProperty(EnOceanDevice.CHIP_ID)).as("CHIP_ID mismatch").isEqualTo(Fixtures.STR_HOST_ID_2);
+	assertThat(ref.getProperty(EnOceanDevice.RORG)).as("RORG mismatch").isEqualTo(Fixtures.STR_RORG_RPS);
+	assertThat(ref.getProperty(EnOceanDevice.FUNC)).as("ref.getProperty(EnOceanDevice.FUNC) must not be null.").isNull();
 
-	EnOceanDevice dev = getContext().getService(ref);
+	EnOceanDevice dev = context.getService(ref);
 	dev.setFunc(Fixtures.FUNC);
 	lastServiceEvent = devices.waitForService();
-	assertNotNull("Timeout reached.", lastServiceEvent);
-	assertEquals("Event mismatch", ServiceListener.SERVICE_MODIFIED, lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
+	assertThat(lastServiceEvent).as("Event mismatch").isEqualTo(ServiceListener.SERVICE_MODIFIED);
 
 	dev.setType(Fixtures.TYPE_1);
 	lastServiceEvent = devices.waitForService();
-	assertNotNull("Timeout reached.", lastServiceEvent);
-	assertEquals("Event mismatch", ServiceListener.SERVICE_MODIFIED, lastServiceEvent);
+	assertThat(lastServiceEvent).as("Timeout reached.").isNotNull();
+	assertThat(lastServiceEvent).as("Event mismatch").isEqualTo(ServiceListener.SERVICE_MODIFIED);
 
-	assertEquals("FUNC mismatch", Fixtures.STR_FUNC, ref.getProperty(EnOceanDevice.FUNC));
-	assertEquals("TYPE mismatch", Fixtures.STR_TYPE_1, ref.getProperty(EnOceanDevice.TYPE));
+	assertThat(ref.getProperty(EnOceanDevice.FUNC)).as("FUNC mismatch").isEqualTo(Fixtures.STR_FUNC);
+	assertThat(ref.getProperty(EnOceanDevice.TYPE)).as("TYPE mismatch").isEqualTo(Fixtures.STR_TYPE_1);
 
 	tlog("Unget service with service reference: " + ref);
-	getContext().ungetService(ref);
+	context.ungetService(ref);
     }
 
 }

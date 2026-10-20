@@ -20,6 +20,9 @@ package org.osgi.test.cases.enocean;
 
 import java.util.Collection;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.enocean.EnOceanDevice;
 import org.osgi.service.enocean.EnOceanHost;
@@ -29,8 +32,8 @@ import org.osgi.service.event.EventAdmin;
 import org.osgi.test.cases.enocean.utils.EventListener;
 import org.osgi.test.cases.enocean.utils.Fixtures;
 import org.osgi.test.cases.enocean.utils.ServiceListener;
-import org.osgi.test.support.compatibility.DefaultTestBundleControl;
-import org.osgi.test.support.step.TestStepProxy;
+import org.osgi.test.common.annotation.InjectBundleContext;
+import org.osgi.tck.step.TestStepProxy;
 
 /**
  * Abstract class that specify the setup(), and teardown() methods for the
@@ -38,7 +41,10 @@ import org.osgi.test.support.step.TestStepProxy;
  * 
  * @author $Id$
  */
-public abstract class AbstractEnOceanTestCase extends DefaultTestBundleControl {
+public abstract class AbstractEnOceanTestCase {
+
+	@InjectBundleContext
+	protected BundleContext	context;
 
     static public final String PLUG_DONGLE = "Plug the EnOcean USB dongle";
     static public final String MSG_EXAMPLE_1A = "MessageExample1_A";
@@ -73,46 +79,48 @@ public abstract class AbstractEnOceanTestCase extends DefaultTestBundleControl {
     /** enOceanHost */
 	protected ServiceListener<EnOceanHost>					enOceanHostServiceListener;
 
-    protected void setUp() throws Exception {
-	sleep(1000);
+    @BeforeEach
+    public void setUp() throws Exception {
+	Thread.sleep(1000);
 	tlog("enter setUp");
-	this.testStepProxy = new TestStepProxy(super.getContext());
+	this.testStepProxy = new TestStepProxy(context);
 
 	/* Tracks device creation */
-	devices = new ServiceListener<>(getContext(), EnOceanDevice.class);
+	devices = new ServiceListener<>(context, EnOceanDevice.class);
 
 	/* Tracks device events */
 	String[] topics = new String[] { Fixtures.SELF_TEST_EVENT_TOPIC };
-	events = new EventListener(getContext(), topics, null);
+	events = new EventListener(context, topics, null);
 
-	enOceanMessageDescriptionSets = new ServiceListener<>(getContext(),
+	enOceanMessageDescriptionSets = new ServiceListener<>(context,
 		EnOceanMessageDescriptionSet.class);
 
-	enOceanChannelDescriptionSets = new ServiceListener<>(getContext(),
+	enOceanChannelDescriptionSets = new ServiceListener<>(context,
 		EnOceanChannelDescriptionSet.class);
 
-	enOceanHostServiceListener = new ServiceListener<>(getContext(),
+	enOceanHostServiceListener = new ServiceListener<>(context,
 			EnOceanHost.class);
 
 	/* Get a global eventAdmin handle */
-	eventAdminRef = getContext().getServiceReference(EventAdmin.class);
-	eventAdmin = getContext().getService(eventAdminRef);
+	eventAdminRef = context.getServiceReference(EventAdmin.class);
+	eventAdmin = context.getService(eventAdminRef);
 	tlog("exit setUp");
     }
 
-    protected void tearDown() throws Exception {
+    @AfterEach
+    public void tearDown() throws Exception {
 	tlog("enter tearDown");
 	this.testStepProxy.close();
-	getContext().ungetService(eventAdminRef);
+	context.ungetService(eventAdminRef);
 	devices.close();
 	enOceanHostServiceListener.close();
 	events.close();
 	enOceanMessageDescriptionSets.close();
 	enOceanChannelDescriptionSets.close();
-	Collection<ServiceReference<EnOceanDevice>> deviceRefs = getContext().getServiceReferences(
+	Collection<ServiceReference<EnOceanDevice>> deviceRefs = context.getServiceReferences(
 		EnOceanDevice.class, null);
 	for (ServiceReference<EnOceanDevice> deviceRef : deviceRefs) {
-		EnOceanDevice device = getContext().getService(deviceRef);
+		EnOceanDevice device = context.getService(deviceRef);
 		tlog("unregistering device : " + device);
 		device.remove();
 	}
@@ -127,7 +135,7 @@ public abstract class AbstractEnOceanTestCase extends DefaultTestBundleControl {
     protected void tlog(String message) {
 	String cls = getClass().getName();
 	cls = cls.substring(cls.lastIndexOf('.') + 1);
-	DefaultTestBundleControl.log("[" + cls + "," + Thread.currentThread().getName() + "] "
+	System.out.println("[" + cls + "," + Thread.currentThread().getName() + "] "
 		+ message);
     }
 

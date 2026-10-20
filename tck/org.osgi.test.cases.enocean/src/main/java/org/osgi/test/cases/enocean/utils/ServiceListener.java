@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
-import org.osgi.test.support.OSGiTestCaseProperties;
+import org.osgi.test.cases.enocean.OSGiTestCaseProperties;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
